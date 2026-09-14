@@ -1,53 +1,94 @@
 /* =========================================================
-   Faro — script da landing page
-   1. PROJETOS  → portfólio (adicionar um site = adicionar um item aqui + 2 prints)
+   Faro — script da landing page (PT em / e EN em /en/)
+   1. PROJETOS  → portfólio (adicionar um site = adicionar um item aqui + prints)
    2. PRECOS    → simulador de orçamento (mudar um valor = mudar aqui)
-   3. Menu mobile, ano do rodapé
+   3. T         → textos do script nos dois idiomas
+   4. Menu mobile, ano do rodapé
+   O idioma vem do <html lang="..."> da página.
    ========================================================= */
 
 const WHATSAPP = '5533987395357';
+const LANG = (document.documentElement.lang || 'pt').toLowerCase().startsWith('en') ? 'en' : 'pt';
+const BRIEFING = LANG === 'en' ? '../briefing/' : 'briefing/';
+
+// Pega o campo no idioma da página: t(item, 'nome') → item.nome_en em inglês, item.nome em português.
+const t = (obj, key) => (LANG === 'en' && obj[key + '_en'] != null ? obj[key + '_en'] : obj[key]);
+
+/* ---------- 3. Textos do script ---------- */
+const T = {
+  pt: {
+    cats: { 'Comércio': 'Comércio', 'Consultoria': 'Consultoria', 'Serviços': 'Serviços' },
+    openSite: 'Abrir site ↗', openSiteAria: (n) => `Abrir o site ${n} em nova aba`,
+    imgDesktop: (n) => `Site ${n} no computador`, imgMobile: (n) => `Site ${n} no celular`,
+    emptyCat: 'Ainda não há projetos nesse ramo — o seu pode ser o primeiro.',
+    perMonth: '/mês', perPage: '/pág.', minusPage: 'Menos uma página', plusPage: 'Mais uma página',
+    estimate: 'Estimativa:',
+    pixDetail: (pct, sub) => `No Pix, com ${pct}% de desconto (de ${sub}).`,
+    cardDetail: (n, v) => `Ou ${n}x de ${v} sem juros no cartão.`,
+    monthly: (v) => `+ ${v}/mês de manutenção`,
+    wa: { intro: 'Olá! Simulei um orçamento no site da Faro:', type: 'Tipo', extras: 'Opcionais', none: 'nenhum', maint: 'Manutenção mensal', yes: 'sim', no: 'não', pay: 'Pagamento', pixTag: ' (10% off)', cardTag: ' (até 4x)', perMonth: '/mês', close: 'Quero receber a proposta.' },
+    menuOpen: 'Abrir menu', menuClose: 'Fechar menu',
+  },
+  en: {
+    cats: { 'Comércio': 'Retail', 'Consultoria': 'Consulting', 'Serviços': 'Services' },
+    openSite: 'Open site ↗', openSiteAria: (n) => `Open the ${n} website in a new tab`,
+    imgDesktop: (n) => `${n} website on desktop`, imgMobile: (n) => `${n} website on mobile`,
+    emptyCat: 'No projects in this category yet — yours could be the first.',
+    perMonth: '/mo', perPage: '/page', minusPage: 'One page less', plusPage: 'One more page',
+    estimate: 'Estimate:',
+    pixDetail: (pct, sub) => `With Pix, ${pct}% off (from ${sub}).`,
+    cardDetail: (n, v) => `Or ${n}× ${v} interest-free on card.`,
+    monthly: (v) => `+ ${v}/mo maintenance`,
+    wa: { intro: 'Hi! I ran a quote on the Faro website:', type: 'Type', extras: 'Add-ons', none: 'none', maint: 'Monthly maintenance', yes: 'yes', no: 'no', pay: 'Payment', pixTag: ' (10% off)', cardTag: ' (up to 4×)', perMonth: '/mo', close: 'I’d like to receive the proposal.' },
+    menuOpen: 'Open menu', menuClose: 'Close menu',
+  },
+}[LANG];
 
 /* ---------- 1. Portfólio ---------- */
 const PROJETOS = [
   {
     nome: 'Utimóveis',
     categoria: 'Comércio',
-    cidade: '8 lojas em MG',
+    cidade: '8 lojas em MG', cidade_en: '8 stores in MG, Brazil',
     descricao: 'Loja de móveis com mais de 30 anos, agora com catálogo e condições de pagamento online.',
+    descricao_en: 'A 30-year-old furniture retailer, now with an online catalogue and payment terms.',
     url: 'https://redeutimoveis.com.br/',
-    imgDesktop: 'assets/portfolio/utimoveis-desktop.jpg',
-    imgLong: 'assets/portfolio/utimoveis-long.jpg',
-    imgMobile: 'assets/portfolio/utimoveis-mobile.jpg',
+    imgDesktop: '/assets/portfolio/utimoveis-desktop.jpg',
+    imgLong: '/assets/portfolio/utimoveis-long.jpg',
+    imgMobile: '/assets/portfolio/utimoveis-mobile.jpg',
   },
   {
     nome: 'LIR Consultoria',
     categoria: 'Consultoria',
-    cidade: 'Belo Horizonte · MG',
+    cidade: 'Belo Horizonte · MG', cidade_en: 'Belo Horizonte · MG, Brazil',
     descricao: 'Antecipação de precatórios explicada com clareza para gerar contato.',
+    descricao_en: 'Court-debt advance services explained clearly to generate leads.',
     url: 'https://lirconsultoria.com.br/',
-    imgDesktop: 'assets/portfolio/lir-desktop.jpg',
-    imgLong: 'assets/portfolio/lir-long.jpg',
-    imgMobile: 'assets/portfolio/lir-mobile.jpg',
+    imgDesktop: '/assets/portfolio/lir-desktop.jpg',
+    imgLong: '/assets/portfolio/lir-long.jpg',
+    imgMobile: '/assets/portfolio/lir-mobile.jpg',
   },
   {
     nome: 'AM Consultoria Ambiental',
     categoria: 'Consultoria',
-    cidade: 'Guanhães · MG',
+    cidade: 'Guanhães · MG', cidade_en: 'Guanhães · MG, Brazil',
     descricao: 'Meio ambiente, topografia e engenharia em um só lugar.',
+    descricao_en: 'Environmental consulting, surveying and engineering in one place.',
     url: 'https://pvrsantoscontato-pixel.github.io/AM-consultoria/',
-    imgDesktop: 'assets/portfolio/am-desktop.jpg',
-    imgLong: 'assets/portfolio/am-long.jpg',
-    imgMobile: 'assets/portfolio/am-mobile.jpg',
+    imgDesktop: '/assets/portfolio/am-desktop.jpg',
+    imgLong: '/assets/portfolio/am-long.jpg',
+    imgMobile: '/assets/portfolio/am-mobile.jpg',
   },
   {
     nome: 'Arkad Elétrica',
     categoria: 'Serviços',
-    cidade: 'Região de Guanhães · MG',
+    cidade: 'Região de Guanhães · MG', cidade_en: 'Guanhães region · MG, Brazil',
     descricao: 'Eletricista com site: serviços, segurança e WhatsApp em um clique.',
+    descricao_en: 'An electrician with a website: services, safety and WhatsApp in one tap.',
     url: 'https://arkad-eletrica.vercel.app/',
-    imgDesktop: 'assets/portfolio/arkad-desktop.jpg',
-    imgLong: 'assets/portfolio/arkad-long.jpg',
-    imgMobile: 'assets/portfolio/arkad-mobile.jpg',
+    imgDesktop: '/assets/portfolio/arkad-desktop.jpg',
+    imgLong: '/assets/portfolio/arkad-long.jpg',
+    imgMobile: '/assets/portfolio/arkad-mobile.jpg',
   },
 ];
 
@@ -56,23 +97,23 @@ function renderPortfolio() {
   if (!grid) return;
 
   grid.innerHTML = PROJETOS.map((p) => `
-    <a class="project" href="${p.url}" target="_blank" rel="noopener" data-cat="${p.categoria}" aria-label="Abrir o site ${p.nome} em nova aba">
+    <a class="project" href="${p.url}" target="_blank" rel="noopener" data-cat="${p.categoria}" aria-label="${T.openSiteAria(p.nome)}">
       <div class="mockup">
         <div class="mockup__desktop">
           <div class="mockup__bar"><i></i><i></i><i></i></div>
-          <img src="${p.imgLong || p.imgDesktop}" alt="Site ${p.nome} no computador" loading="lazy" width="1440" height="900">
+          <img src="${p.imgLong || p.imgDesktop}" alt="${T.imgDesktop(p.nome)}" loading="lazy" width="1440" height="900">
         </div>
         <div class="mockup__mobile">
-          <img src="${p.imgMobile}" alt="Site ${p.nome} no celular" loading="lazy" width="390" height="844">
+          <img src="${p.imgMobile}" alt="${T.imgMobile(p.nome)}" loading="lazy" width="390" height="844">
         </div>
       </div>
       <div class="project__body">
         <div>
-          <p class="project__meta">${p.categoria} · ${p.cidade}</p>
+          <p class="project__meta">${T.cats[p.categoria] || p.categoria} · ${t(p, 'cidade')}</p>
           <h3>${p.nome}</h3>
-          <p>${p.descricao}</p>
+          <p>${t(p, 'descricao')}</p>
         </div>
-        <span class="project__open">Abrir site ↗</span>
+        <span class="project__open">${T.openSite}</span>
       </div>
     </a>
   `).join('');
@@ -95,7 +136,7 @@ function renderPortfolio() {
       if (!empty) {
         empty = document.createElement('p');
         empty.className = 'portfolio__empty';
-        empty.textContent = 'Ainda não há projetos nesse ramo — o seu pode ser o primeiro.';
+        empty.textContent = T.emptyCat;
         grid.appendChild(empty);
       }
     } else if (empty) {
@@ -107,45 +148,47 @@ function renderPortfolio() {
 /* ---------- 2. Simulador de orçamento ---------- */
 const PRECOS = {
   tipos: [
-    { id: 'landing', nome: 'Landing Page', desc: 'Uma página, foco em contato e vendas.', preco: 900, padrao: true },
-    { id: 'completo', nome: 'Site completo', desc: 'Até 4 páginas. Para negócios com vários serviços ou institucional.', preco: 1500, tag: 'Mais completo' },
+    { id: 'landing', nome: 'Landing Page', nome_en: 'Landing page', desc: 'Uma página, foco em contato e vendas.', desc_en: 'One page, focused on contact and sales.', preco: 900, padrao: true },
+    { id: 'completo', nome: 'Site completo', nome_en: 'Full website', desc: 'Até 4 páginas. Para negócios com vários serviços ou institucional.', desc_en: 'Up to 4 pages. For businesses with several services or a corporate site.', preco: 1500, tag: 'Mais completo', tag_en: 'Most complete' },
   ],
   extras: [
-    { id: 'gmn', nome: 'Google Meu Negócio', desc: 'Apareça no Google e no Maps.', preco: 400, tag: 'Recomendado' },
-    { id: 'dominio', nome: 'Configuração de domínio + hospedagem', desc: 'Custo do domínio/hospedagem pago à parte ao provedor.', preco: 200 },
-    { id: 'blog', nome: 'Blog', desc: 'Artigos para aparecer em mais buscas.', preco: 300 },
-    { id: 'paginas', nome: 'Página adicional', desc: 'R$ 150 por página extra.', preco: 150, quantidade: true, max: 10 },
-    { id: 'manutencao', nome: 'Manutenção mensal', desc: 'Até 2 alterações por mês, correções e suporte.', preco: 80, mensal: true },
+    { id: 'gmn', nome: 'Google Meu Negócio', nome_en: 'Google Business Profile', desc: 'Apareça no Google e no Maps.', desc_en: 'Show up on Google and Maps.', preco: 400, tag: 'Recomendado', tag_en: 'Recommended' },
+    { id: 'dominio', nome: 'Configuração de domínio + hospedagem', nome_en: 'Domain + hosting setup', desc: 'Custo do domínio/hospedagem pago à parte ao provedor.', desc_en: 'Domain/hosting fees paid separately to the provider.', preco: 200 },
+    { id: 'blog', nome: 'Blog', nome_en: 'Blog', desc: 'Artigos para aparecer em mais buscas.', desc_en: 'Articles to rank for more searches.', preco: 300 },
+    { id: 'paginas', nome: 'Página adicional', nome_en: 'Extra page', desc: 'R$ 150 por página extra.', desc_en: 'R$ 150 per extra page.', preco: 150, quantidade: true, max: 10 },
+    { id: 'manutencao', nome: 'Manutenção mensal', nome_en: 'Monthly maintenance', desc: 'Até 2 alterações por mês, correções e suporte.', desc_en: 'Up to 2 changes a month, fixes and support.', preco: 80, mensal: true },
   ],
   pagamentos: [
-    { id: 'pix', nome: 'Pix', desc: '10% de desconto', desconto: 0.10, padrao: true },
-    { id: 'cartao', nome: 'Cartão', desc: 'Até 4x sem juros', parcelas: 4 },
+    { id: 'pix', nome: 'Pix', nome_en: 'Pix', desc: '10% de desconto', desc_en: '10% off', desconto: 0.10, padrao: true },
+    { id: 'cartao', nome: 'Cartão', nome_en: 'Card', desc: 'Até 4x sem juros', desc_en: 'Up to 4× interest-free', parcelas: 4 },
   ],
 };
 
-const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
-const brlCents = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
+const LOCALE = LANG === 'en' ? 'en-US' : 'pt-BR';
+const brl = new Intl.NumberFormat(LOCALE, { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+const brlCents = new Intl.NumberFormat(LOCALE, { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
 
 function optionHTML({ kind, group, item }) {
   const isRadio = kind === 'radio';
-  const priceLabel = item.mensal ? `${brl.format(item.preco)}/mês`
-    : item.quantidade ? `${brl.format(item.preco)}/pág.`
+  const priceLabel = item.mensal ? `${brl.format(item.preco)}${T.perMonth}`
+    : item.quantidade ? `${brl.format(item.preco)}${T.perPage}`
     : item.desconto != null || item.parcelas ? ''
     : brl.format(item.preco);
   const stepper = item.quantidade ? `
     <span class="stepper" data-stepper="${item.id}">
-      <button type="button" data-step="-1" aria-label="Menos uma página">−</button>
+      <button type="button" data-step="-1" aria-label="${T.minusPage}">−</button>
       <output name="${item.id}_qtd" aria-live="polite">0</output>
-      <button type="button" data-step="1" aria-label="Mais uma página">+</button>
+      <button type="button" data-step="1" aria-label="${T.plusPage}">+</button>
     </span>` : '';
+  const tag = t(item, 'tag');
 
   return `
     <label class="opt ${isRadio ? 'opt--radio' : ''}">
       <input type="${kind}" name="${group}" value="${item.id}" ${item.padrao ? 'checked' : ''} ${item.quantidade ? 'data-quantidade' : ''}>
       <span class="opt__box" aria-hidden="true"></span>
       <span class="opt__body">
-        <span class="opt__title">${item.nome}${item.tag ? ` <span class="tag">${item.tag}</span>` : ''}${priceLabel ? ` <span class="opt__price">${priceLabel}</span>` : ''}</span>
-        <span class="opt__desc">${item.desc}</span>
+        <span class="opt__title">${t(item, 'nome')}${tag ? ` <span class="tag">${tag}</span>` : ''}${priceLabel ? ` <span class="opt__price">${priceLabel}</span>` : ''}</span>
+        <span class="opt__desc">${t(item, 'desc')}</span>
       </span>
       ${stepper}
     </label>`;
@@ -190,9 +233,9 @@ function initSimulador() {
 
   function calcular() {
     const tipoId = form.querySelector('input[name="tipo"]:checked')?.value;
-    const tipo = PRECOS.tipos.find((t) => t.id === tipoId) || PRECOS.tipos[0];
+    const tipo = PRECOS.tipos.find((x) => x.id === tipoId) || PRECOS.tipos[0];
     const pagId = form.querySelector('input[name="pagamento"]:checked')?.value;
-    const pag = PRECOS.pagamentos.find((p) => p.id === pagId) || PRECOS.pagamentos[0];
+    const pag = PRECOS.pagamentos.find((x) => x.id === pagId) || PRECOS.pagamentos[0];
 
     const marcados = [...form.querySelectorAll('input[name="extra"]:checked')].map((i) => PRECOS.extras.find((x) => x.id === i.value));
     const unicos = marcados.filter((x) => !x.mensal);
@@ -203,7 +246,7 @@ function initSimulador() {
     unicos.forEach((x) => {
       const n = x.quantidade ? qtd[x.id] : 1;
       subtotal += x.preco * n;
-      linhas.push(x.quantidade ? `${x.nome} (${n})` : x.nome);
+      linhas.push(x.quantidade ? `${t(x, 'nome')} (${n})` : t(x, 'nome'));
     });
     const mensal = mensais.reduce((s, x) => s + x.preco, 0);
 
@@ -211,47 +254,48 @@ function initSimulador() {
     let detalhe = '';
     if (pag.desconto) {
       total = Math.round(subtotal * (1 - pag.desconto));
-      detalhe = `No Pix, com ${Math.round(pag.desconto * 100)}% de desconto (de ${brl.format(subtotal)}).`;
+      detalhe = T.pixDetail(Math.round(pag.desconto * 100), brl.format(subtotal));
     } else if (pag.parcelas) {
-      detalhe = `Ou ${pag.parcelas}x de ${brlCents.format(subtotal / pag.parcelas)} sem juros no cartão.`;
+      detalhe = T.cardDetail(pag.parcelas, brlCents.format(subtotal / pag.parcelas));
     }
 
-    document.getElementById('simPrefix').textContent = 'Estimativa:';
+    document.getElementById('simPrefix').textContent = T.estimate;
     document.getElementById('simTotal').textContent = brl.format(total);
     document.getElementById('simDetail').textContent = detalhe;
     const m = document.getElementById('simMonthly');
     m.hidden = mensal === 0;
-    m.textContent = mensal ? `+ ${brl.format(mensal)}/mês de manutenção` : '';
+    m.textContent = mensal ? T.monthly(brl.format(mensal)) : '';
 
     // Mensagem do WhatsApp
+    const w = T.wa;
     const msg = [
-      'Olá! Simulei um orçamento no site da Faro:',
-      `• Tipo: ${tipo.nome}`,
-      `• Opcionais: ${linhas.length ? linhas.join(', ') : 'nenhum'}`,
-      `• Manutenção mensal: ${mensal ? 'sim' : 'não'}`,
-      `• Pagamento: ${pag.nome}${pag.desconto ? ' (10% off)' : ' (até 4x)'} — ${brl.format(total)}${mensal ? ` + ${brl.format(mensal)}/mês` : ''}`,
-      'Quero receber a proposta.',
+      w.intro,
+      `• ${w.type}: ${t(tipo, 'nome')}`,
+      `• ${w.extras}: ${linhas.length ? linhas.join(', ') : w.none}`,
+      `• ${w.maint}: ${mensal ? w.yes : w.no}`,
+      `• ${w.pay}: ${t(pag, 'nome')}${pag.desconto ? w.pixTag : w.cardTag} — ${brl.format(total)}${mensal ? ` + ${brl.format(mensal)}${w.perMonth}` : ''}`,
+      w.close,
     ].join('\n');
     document.getElementById('simWhats').href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
     // Resumo curto para o briefing
-    const resumo = `${tipo.nome}${linhas.length ? ' + ' + linhas.join(', ') : ''} — ${brl.format(total)} (${pag.nome})`;
-    document.getElementById('simBriefing').href = `briefing/?pacote=${encodeURIComponent(resumo)}`;
+    const resumo = `${t(tipo, 'nome')}${linhas.length ? ' + ' + linhas.join(', ') : ''} — ${brl.format(total)} (${t(pag, 'nome')})`;
+    document.getElementById('simBriefing').href = `${BRIEFING}?pacote=${encodeURIComponent(resumo)}`;
   }
 
   calcular();
 }
 
-/* ---------- 3. Menu mobile e rodapé ---------- */
+/* ---------- 4. Menu mobile e rodapé ---------- */
 function initMenu() {
   const toggle = document.getElementById('menuToggle');
   const nav = document.getElementById('nav');
   if (!toggle || !nav) return;
-  const close = () => { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menu'); };
+  const close = () => { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', T.menuOpen); };
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    toggle.setAttribute('aria-label', open ? T.menuClose : T.menuOpen);
   });
   nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });

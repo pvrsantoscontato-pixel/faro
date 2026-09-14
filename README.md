@@ -12,6 +12,7 @@ assets/favicon.svg    ícone
 assets/portfolio/     prints desktop (1440×900), longos (1440×2600) e mobile (390×844) dos sites do portfólio
 assets/logos/         logos dos clientes (faixa "Clientes")
 assets/paulo.jpg      foto da seção "Quem faz"
+en/index.html         versão em inglês (mesmo styles.css e script.js; o script lê o <html lang>)
 briefing/index.html   questionário de briefing (S01–S09) — envia por e-mail via /api/submit
 api/submit.js         função serverless (Vercel) que envia o briefing por e-mail via Resend
 ```
