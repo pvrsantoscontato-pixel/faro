@@ -9,7 +9,9 @@
 
 const WHATSAPP = '5533987395357';
 const LANG = (document.documentElement.lang || 'pt').toLowerCase().startsWith('en') ? 'en' : 'pt';
-const BRIEFING = 'briefing/';
+// Links internos da versão EN levam ?lang=en para furar o redirect por país (quem testa do Brasil).
+const BRIEFING = LANG === 'en' ? 'briefing/?lang=en&' : 'briefing/?';
+const CONTACT_EMAIL = 'pvrsantos.contato@gmail.com';
 
 // Pega o campo no idioma da página: t(item, 'nome') → item.nome_en em inglês, item.nome em português.
 const t = (obj, key) => (LANG === 'en' && obj[key + '_en'] != null ? obj[key + '_en'] : obj[key]);
@@ -31,7 +33,7 @@ const T = {
     menuOpen: 'Abrir menu', menuClose: 'Fechar menu',
   },
   en: {
-    cats: { 'Comércio': 'Retail', 'Consultoria': 'Consulting', 'Serviços': 'Services' },
+    cats: { 'Comércio': 'Retail', 'Consultoria': 'Consulting', 'Serviços': 'Home services' },
     openSite: 'Open site ↗', openSiteAria: (n) => `Open the ${n} website in a new tab`,
     imgDesktop: (n) => `${n} website on desktop`, imgMobile: (n) => `${n} website on mobile`,
     emptyCat: 'No projects in this category yet — yours could be the first.',
@@ -41,7 +43,7 @@ const T = {
     cardDetail: (n, v) => `Or ${n}× ${v} interest-free on card.`,
     stripeDetail: 'Secure card payment via Stripe. You get the invoice with the proposal.',
     monthly: (v) => `+ ${v}/mo maintenance`,
-    wa: { intro: 'Hi! I ran a quote on the Faro website:', type: 'Type', extras: 'Add-ons', none: 'none', maint: 'Monthly maintenance', yes: 'yes', no: 'no', pay: 'Payment', pixTag: ' (10% off)', cardTag: ' (up to 4×)', perMonth: '/mo', close: 'I’d like to receive the proposal.' },
+    mailSubject: 'Quote request — Faro', wa: { intro: 'Hi Paulo, I ran a quote on the Faro website:', type: 'Type', extras: 'Add-ons', none: 'none', maint: 'Monthly maintenance', yes: 'yes', no: 'no', pay: 'Payment', pixTag: ' (10% off)', cardTag: ' (up to 4×)', perMonth: '/mo', close: 'I’d like to receive the proposal.' },
     menuOpen: 'Open menu', menuClose: 'Close menu',
   },
 }[LANG];
@@ -288,11 +290,15 @@ function initSimulador() {
       `• ${w.pay}: ${t(pag, 'nome')}${pag.desconto ? w.pixTag : pag.parcelas ? w.cardTag : ''} — ${brl.format(total)}${mensal ? ` + ${brl.format(mensal)}${w.perMonth}` : ''}`,
       w.close,
     ].join('\n');
-    document.getElementById('simWhats').href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    // PT: abre o WhatsApp com o resumo. EN: abre o e-mail com o resumo (público que não usa WhatsApp).
+    const cta = document.getElementById('simWhats');
+    cta.href = LANG === 'en'
+      ? `mailto:${cta.dataset.email || CONTACT_EMAIL}?subject=${encodeURIComponent(T.mailSubject)}&body=${encodeURIComponent(msg)}`
+      : `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
     // Resumo curto para o briefing
     const resumo = `${t(tipo, 'nome')}${linhas.length ? ' + ' + linhas.join(', ') : ''} — ${brl.format(total)} (${t(pag, 'nome')})`;
-    document.getElementById('simBriefing').href = `${BRIEFING}?pacote=${encodeURIComponent(resumo)}`;
+    document.getElementById('simBriefing').href = `${BRIEFING}pacote=${encodeURIComponent(resumo)}`;
   }
 
   calcular();
@@ -313,7 +319,50 @@ function initMenu() {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 }
 
+/* ---------- 5. Formulário de contato (EN) → /api/submit ---------- */
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const status = document.getElementById('contactStatus');
+  const btn = document.getElementById('contactSubmit');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const f = new FormData(form);
+    const name = (f.get('name') || '').trim();
+    const email = (f.get('email') || '').trim();
+    const text = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Business: ${(f.get('business') || '').trim() || '-'}`,
+      '',
+      (f.get('message') || '').trim(),
+    ].join('\n');
+    btn.disabled = true;
+    const label = btn.textContent;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject: `Contact (EN) — ${name}`, text, replyTo: email }),
+      });
+      if (!res.ok) throw new Error('send failed');
+      form.reset();
+      status.textContent = 'Thanks! Your message is in. I’ll reply within one business day.';
+    } catch (err) {
+      const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Website inquiry — ' + name)}&body=${encodeURIComponent(text)}`;
+      status.innerHTML = `Something went wrong sending the form. <a href="${mailto}">Click here to send it by email instead</a>.`;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = label;
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initContactForm();
   renderPortfolio();
   initSimulador();
   initMenu();
