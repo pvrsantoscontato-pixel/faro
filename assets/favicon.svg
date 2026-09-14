@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0F1620"/>
+  <!-- "A" da Faro: chevron branco -->
+  <path d="M10 54 L26 12 H38 L54 54 H43.5 L32 23.5 L20.5 54 Z" fill="#FFFFFF"/>
+  <!-- triângulo verde: direção -->
+  <path d="M40 4 L58 9 L47 23 Z" fill="#A6C639"/>
+</svg>

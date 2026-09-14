@@ -1,0 +1,10 @@
+{
+  "name": "faro-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site da Faro (landing page + simulador de orçamento) e questionário de briefing em /briefing, com envio automático por e-mail via Vercel Functions + Resend.",
+  "scripts": {
+    "dev": "vercel dev",
+    "preview": "npx -y serve -l 5500 ."
+  }
+}

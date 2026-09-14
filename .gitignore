@@ -1,0 +1,9 @@
+node_modules/
+.vercel/
+.env
+.env.local
+
+# Ferramentas do agente (não fazem parte do site)
+.agents/
+.claude/
+skills-lock.json
