@@ -10,19 +10,49 @@
       "permanent": false
     },
     {
-      "source": "/briefing/:path*",
+      "source": "/briefing",
       "missing": [
         { "type": "header", "key": "x-vercel-ip-country", "value": "BR" },
         { "type": "query", "key": "lang" }
       ],
-      "destination": "/en/briefing/:path*",
+      "destination": "/en/briefing/",
       "permanent": false
     },
     {
-      "source": "/en/:path*",
+      "source": "/briefing/",
+      "missing": [
+        { "type": "header", "key": "x-vercel-ip-country", "value": "BR" },
+        { "type": "query", "key": "lang" }
+      ],
+      "destination": "/en/briefing/",
+      "permanent": false
+    },
+    {
+      "source": "/en",
       "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
       "missing": [{ "type": "query", "key": "lang" }],
-      "destination": "/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/en/",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
+      "missing": [{ "type": "query", "key": "lang" }],
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/en/briefing",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
+      "missing": [{ "type": "query", "key": "lang" }],
+      "destination": "/briefing/",
+      "permanent": false
+    },
+    {
+      "source": "/en/briefing/",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
+      "missing": [{ "type": "query", "key": "lang" }],
+      "destination": "/briefing/",
       "permanent": false
     }
   ]
