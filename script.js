@@ -16,6 +16,7 @@ const PROJETOS = [
     descricao: 'Loja de móveis com mais de 30 anos, agora com catálogo e condições de pagamento online.',
     url: 'https://redeutimoveis.com.br/',
     imgDesktop: 'assets/portfolio/utimoveis-desktop.jpg',
+    imgLong: 'assets/portfolio/utimoveis-long.jpg',
     imgMobile: 'assets/portfolio/utimoveis-mobile.jpg',
   },
   {
@@ -25,6 +26,7 @@ const PROJETOS = [
     descricao: 'Antecipação de precatórios explicada com clareza para gerar contato.',
     url: 'https://lirconsultoria.com.br/',
     imgDesktop: 'assets/portfolio/lir-desktop.jpg',
+    imgLong: 'assets/portfolio/lir-long.jpg',
     imgMobile: 'assets/portfolio/lir-mobile.jpg',
   },
   {
@@ -34,6 +36,7 @@ const PROJETOS = [
     descricao: 'Meio ambiente, topografia e engenharia em um só lugar.',
     url: 'https://pvrsantoscontato-pixel.github.io/AM-consultoria/',
     imgDesktop: 'assets/portfolio/am-desktop.jpg',
+    imgLong: 'assets/portfolio/am-long.jpg',
     imgMobile: 'assets/portfolio/am-mobile.jpg',
   },
   {
@@ -43,6 +46,7 @@ const PROJETOS = [
     descricao: 'Eletricista com site: serviços, segurança e WhatsApp em um clique.',
     url: 'https://arkad-eletrica.vercel.app/',
     imgDesktop: 'assets/portfolio/arkad-desktop.jpg',
+    imgLong: 'assets/portfolio/arkad-long.jpg',
     imgMobile: 'assets/portfolio/arkad-mobile.jpg',
   },
 ];
@@ -56,7 +60,7 @@ function renderPortfolio() {
       <div class="mockup">
         <div class="mockup__desktop">
           <div class="mockup__bar"><i></i><i></i><i></i></div>
-          <img src="${p.imgDesktop}" alt="Site ${p.nome} no computador" loading="lazy" width="1440" height="900">
+          <img src="${p.imgLong || p.imgDesktop}" alt="Site ${p.nome} no computador" loading="lazy" width="1440" height="900">
         </div>
         <div class="mockup__mobile">
           <img src="${p.imgMobile}" alt="Site ${p.nome} no celular" loading="lazy" width="390" height="844">
