@@ -5,11 +5,13 @@ Landing page da **Faro** (criação de sites e Google Meu Negócio para pequenos
 ## Estrutura
 
 ```
-index.html            landing page (hero, serviços, portfólio, como funciona, simulador, FAQ, CTA)
-styles.css            estilos (paleta: navy #0F1620, off-white #E6E3DD, verde #A6C639, Montserrat)
+index.html            landing page (hero, problema, serviços, portfólio, como funciona, quem faz, simulador, FAQ, clientes, CTA)
+styles.css            estilos (paleta: navy #0F1620, off-white #E6E3DD, verde #A6C639, Montserrat) + mockups/visual
 script.js             portfólio (lista PROJETOS), simulador (tabela PRECOS), menu mobile
 assets/favicon.svg    ícone
-assets/portfolio/     prints desktop (1440×900) e mobile (390×844) dos sites do portfólio
+assets/portfolio/     prints desktop (1440×900), longos (1440×2600) e mobile (390×844) dos sites do portfólio
+assets/logos/         logos dos clientes (faixa "Clientes")
+assets/paulo.jpg      foto da seção "Quem faz"
 briefing/index.html   questionário de briefing (S01–S09) — envia por e-mail via /api/submit
 api/submit.js         função serverless (Vercel) que envia o briefing por e-mail via Resend
 ```
