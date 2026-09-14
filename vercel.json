@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "missing": [
+        { "type": "header", "key": "x-vercel-ip-country", "value": "BR" },
+        { "type": "query", "key": "lang" }
+      ],
+      "destination": "/en/",
+      "permanent": false
+    },
+    {
+      "source": "/briefing/:path*",
+      "missing": [
+        { "type": "header", "key": "x-vercel-ip-country", "value": "BR" },
+        { "type": "query", "key": "lang" }
+      ],
+      "destination": "/en/briefing/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/en/:path*",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
+      "missing": [{ "type": "query", "key": "lang" }],
+      "destination": "/:path*",
+      "permanent": false
+    }
+  ]
+}

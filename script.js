@@ -9,7 +9,7 @@
 
 const WHATSAPP = '5533987395357';
 const LANG = (document.documentElement.lang || 'pt').toLowerCase().startsWith('en') ? 'en' : 'pt';
-const BRIEFING = LANG === 'en' ? '../briefing/' : 'briefing/';
+const BRIEFING = 'briefing/';
 
 // Pega o campo no idioma da página: t(item, 'nome') → item.nome_en em inglês, item.nome em português.
 const t = (obj, key) => (LANG === 'en' && obj[key + '_en'] != null ? obj[key + '_en'] : obj[key]);
@@ -25,6 +25,7 @@ const T = {
     estimate: 'Estimativa:',
     pixDetail: (pct, sub) => `No Pix, com ${pct}% de desconto (de ${sub}).`,
     cardDetail: (n, v) => `Ou ${n}x de ${v} sem juros no cartão.`,
+    stripeDetail: 'Pagamento por cartão via Stripe.',
     monthly: (v) => `+ ${v}/mês de manutenção`,
     wa: { intro: 'Olá! Simulei um orçamento no site da Faro:', type: 'Tipo', extras: 'Opcionais', none: 'nenhum', maint: 'Manutenção mensal', yes: 'sim', no: 'não', pay: 'Pagamento', pixTag: ' (10% off)', cardTag: ' (até 4x)', perMonth: '/mês', close: 'Quero receber a proposta.' },
     menuOpen: 'Abrir menu', menuClose: 'Fechar menu',
@@ -38,6 +39,7 @@ const T = {
     estimate: 'Estimate:',
     pixDetail: (pct, sub) => `With Pix, ${pct}% off (from ${sub}).`,
     cardDetail: (n, v) => `Or ${n}× ${v} interest-free on card.`,
+    stripeDetail: 'Secure card payment via Stripe. You get the invoice with the proposal.',
     monthly: (v) => `+ ${v}/mo maintenance`,
     wa: { intro: 'Hi! I ran a quote on the Faro website:', type: 'Type', extras: 'Add-ons', none: 'none', maint: 'Monthly maintenance', yes: 'yes', no: 'no', pay: 'Payment', pixTag: ' (10% off)', cardTag: ' (up to 4×)', perMonth: '/mo', close: 'I’d like to receive the proposal.' },
     menuOpen: 'Open menu', menuClose: 'Close menu',
@@ -148,32 +150,40 @@ function renderPortfolio() {
 /* ---------- 2. Simulador de orçamento ---------- */
 const PRECOS = {
   tipos: [
-    { id: 'landing', nome: 'Landing Page', nome_en: 'Landing page', desc: 'Uma página, foco em contato e vendas.', desc_en: 'One page, focused on contact and sales.', preco: 900, padrao: true },
-    { id: 'completo', nome: 'Site completo', nome_en: 'Full website', desc: 'Até 4 páginas. Para negócios com vários serviços ou institucional.', desc_en: 'Up to 4 pages. For businesses with several services or a corporate site.', preco: 1500, tag: 'Mais completo', tag_en: 'Most complete' },
+    { id: 'landing', nome: 'Landing Page', nome_en: 'Landing page', desc: 'Uma página, foco em contato e vendas.', desc_en: 'One page, focused on contact and sales.', preco: 900, preco_en: 400, padrao: true },
+    { id: 'completo', nome: 'Site completo', nome_en: 'Full website', desc: 'Até 4 páginas. Para negócios com vários serviços ou institucional.', desc_en: 'Up to 4 pages. For businesses with several services or a corporate site.', preco: 1500, preco_en: 700, tag: 'Mais completo', tag_en: 'Most complete' },
   ],
   extras: [
-    { id: 'gmn', nome: 'Google Meu Negócio', nome_en: 'Google Business Profile', desc: 'Apareça no Google e no Maps.', desc_en: 'Show up on Google and Maps.', preco: 400, tag: 'Recomendado', tag_en: 'Recommended' },
-    { id: 'dominio', nome: 'Configuração de domínio + hospedagem', nome_en: 'Domain + hosting setup', desc: 'Custo do domínio/hospedagem pago à parte ao provedor.', desc_en: 'Domain/hosting fees paid separately to the provider.', preco: 200 },
-    { id: 'blog', nome: 'Blog', nome_en: 'Blog', desc: 'Artigos para aparecer em mais buscas.', desc_en: 'Articles to rank for more searches.', preco: 300 },
-    { id: 'paginas', nome: 'Página adicional', nome_en: 'Extra page', desc: 'R$ 150 por página extra.', desc_en: 'R$ 150 per extra page.', preco: 150, quantidade: true, max: 10 },
-    { id: 'manutencao', nome: 'Manutenção mensal', nome_en: 'Monthly maintenance', desc: 'Até 2 alterações por mês, correções e suporte.', desc_en: 'Up to 2 changes a month, fixes and support.', preco: 80, mensal: true },
+    { id: 'gmn', nome: 'Google Meu Negócio', nome_en: 'Google Business Profile', desc: 'Apareça no Google e no Maps.', desc_en: 'Show up on Google and Maps.', preco: 400, preco_en: 180, tag: 'Recomendado', tag_en: 'Recommended' },
+    { id: 'dominio', nome: 'Configuração de domínio + hospedagem', nome_en: 'Domain + hosting setup', desc: 'Custo do domínio/hospedagem pago à parte ao provedor.', desc_en: 'Domain/hosting fees paid separately to the provider.', preco: 200, preco_en: 90 },
+    { id: 'blog', nome: 'Blog', nome_en: 'Blog', desc: 'Artigos para aparecer em mais buscas.', desc_en: 'Articles to rank for more searches.', preco: 300, preco_en: 130 },
+    { id: 'paginas', nome: 'Página adicional', nome_en: 'Extra page', desc: 'R$ 150 por página extra.', desc_en: 'US$ 70 per extra page.', preco: 150, preco_en: 70, quantidade: true, max: 10 },
+    { id: 'manutencao', nome: 'Manutenção mensal', nome_en: 'Monthly maintenance', desc: 'Até 2 alterações por mês, correções e suporte.', desc_en: 'Up to 2 changes a month, fixes and support.', preco: 80, preco_en: 40, mensal: true },
   ],
   pagamentos: [
     { id: 'pix', nome: 'Pix', nome_en: 'Pix', desc: '10% de desconto', desc_en: '10% off', desconto: 0.10, padrao: true },
     { id: 'cartao', nome: 'Cartão', nome_en: 'Card', desc: 'Até 4x sem juros', desc_en: 'Up to 4× interest-free', parcelas: 4 },
   ],
+  // Versão em inglês: pagamento por cartão via Stripe, sem desconto.
+  pagamentos_en: [
+    { id: 'stripe', nome: 'Cartão (Stripe)', nome_en: 'Card via Stripe', desc: 'Checkout seguro', desc_en: 'Secure checkout · invoice sent with the proposal', stripe: true, padrao: true },
+  ],
 };
+if (LANG === 'en') PRECOS.pagamentos = PRECOS.pagamentos_en;
 
 const LOCALE = LANG === 'en' ? 'en-US' : 'pt-BR';
-const brl = new Intl.NumberFormat(LOCALE, { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
-const brlCents = new Intl.NumberFormat(LOCALE, { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
+const CURRENCY = LANG === 'en' ? 'USD' : 'BRL';
+const brl = new Intl.NumberFormat(LOCALE, { style: 'currency', currency: CURRENCY, maximumFractionDigits: 0 });
+const brlCents = new Intl.NumberFormat(LOCALE, { style: 'currency', currency: CURRENCY, minimumFractionDigits: 2 });
+// Preço no idioma da página (preco_en em inglês, preco em português).
+const price = (item) => (LANG === 'en' && item.preco_en != null ? item.preco_en : item.preco);
 
 function optionHTML({ kind, group, item }) {
   const isRadio = kind === 'radio';
-  const priceLabel = item.mensal ? `${brl.format(item.preco)}${T.perMonth}`
-    : item.quantidade ? `${brl.format(item.preco)}${T.perPage}`
+  const priceLabel = item.mensal ? `${brl.format(price(item))}${T.perMonth}`
+    : item.quantidade ? `${brl.format(price(item))}${T.perPage}`
     : item.desconto != null || item.parcelas ? ''
-    : brl.format(item.preco);
+    : brl.format(price(item));
   const stepper = item.quantidade ? `
     <span class="stepper" data-stepper="${item.id}">
       <button type="button" data-step="-1" aria-label="${T.minusPage}">−</button>
@@ -241,14 +251,14 @@ function initSimulador() {
     const unicos = marcados.filter((x) => !x.mensal);
     const mensais = marcados.filter((x) => x.mensal);
 
-    let subtotal = tipo.preco;
+    let subtotal = price(tipo);
     const linhas = [];
     unicos.forEach((x) => {
       const n = x.quantidade ? qtd[x.id] : 1;
-      subtotal += x.preco * n;
+      subtotal += price(x) * n;
       linhas.push(x.quantidade ? `${t(x, 'nome')} (${n})` : t(x, 'nome'));
     });
-    const mensal = mensais.reduce((s, x) => s + x.preco, 0);
+    const mensal = mensais.reduce((s, x) => s + price(x), 0);
 
     let total = subtotal;
     let detalhe = '';
@@ -257,6 +267,8 @@ function initSimulador() {
       detalhe = T.pixDetail(Math.round(pag.desconto * 100), brl.format(subtotal));
     } else if (pag.parcelas) {
       detalhe = T.cardDetail(pag.parcelas, brlCents.format(subtotal / pag.parcelas));
+    } else if (pag.stripe) {
+      detalhe = T.stripeDetail;
     }
 
     document.getElementById('simPrefix').textContent = T.estimate;
@@ -273,7 +285,7 @@ function initSimulador() {
       `• ${w.type}: ${t(tipo, 'nome')}`,
       `• ${w.extras}: ${linhas.length ? linhas.join(', ') : w.none}`,
       `• ${w.maint}: ${mensal ? w.yes : w.no}`,
-      `• ${w.pay}: ${t(pag, 'nome')}${pag.desconto ? w.pixTag : w.cardTag} — ${brl.format(total)}${mensal ? ` + ${brl.format(mensal)}${w.perMonth}` : ''}`,
+      `• ${w.pay}: ${t(pag, 'nome')}${pag.desconto ? w.pixTag : pag.parcelas ? w.cardTag : ''} — ${brl.format(total)}${mensal ? ` + ${brl.format(mensal)}${w.perMonth}` : ''}`,
       w.close,
     ].join('\n');
     document.getElementById('simWhats').href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
