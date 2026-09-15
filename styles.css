@@ -666,32 +666,50 @@ strong { font-weight: 700; }
 
 /* ---------- Problema v2 ---------- */
 .problem__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: center; }
-.problem__visual { position: relative; min-height: 520px; }
+.problem__visual { position: relative; min-height: 600px; }
 .pains { display: grid; gap: 14px; margin-top: 10px; }
 .pain { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
 .pain h3 { font-size: 17px; margin: 8px 0 6px; }
 .pain p { font-size: 14px; color: var(--ink-soft); }
 .problem--v2 .problem__close { margin-top: 24px; }
 
-.igmock {
+/* Celular com perfil de Instagram (mock fiel ao app) */
+.phone {
   position: absolute; left: 0; top: 0; width: 62%;
-  background: var(--white); border-radius: 22px; padding: 18px;
-  border: 1px solid var(--line); box-shadow: var(--shadow);
-  font-size: 12px;
+  background: #fff; border-radius: 30px; border: 6px solid #1B1F24;
+  box-shadow: 0 30px 70px rgba(15,22,32,0.35); overflow: hidden;
+  font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #111;
 }
-.igmock__top { display: flex; align-items: center; gap: 16px; }
-.igmock__avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); padding: 3px; box-shadow: inset 0 0 0 3px #fff; }
-.igmock__stats { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; flex: 1; gap: 0 6px; }
-.igmock__stats b { font-size: 14px; }
-.igmock__stats small { font-size: 10px; color: var(--gray); grid-row: 2; }
-.igmock__bio { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; }
-.igmock__bio strong { font-size: 13px; }
-.igmock__bio a { color: #00376b; font-weight: 600; text-decoration: none; }
-.igmock__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 14px; }
-.igmock__grid i { aspect-ratio: 1; background: linear-gradient(135deg, #e9e6e0, #d3d0ca); border-radius: 3px; }
-.igmock__grid i:nth-child(2) { background: linear-gradient(135deg, #d8dcc9, #b9c39a); }
-.igmock__grid i:nth-child(4) { background: linear-gradient(135deg, #cfd6df, #aab6c4); }
-.igmock__grid i:nth-child(6) { background: linear-gradient(135deg, #e8d9cd, #cdb4a0); }
+.phone__status { display: flex; justify-content: space-between; padding: 8px 16px 2px; font-size: 11px; font-weight: 600; }
+.phone__signal { letter-spacing: -1px; font-size: 9px; }
+.ig { padding: 4px 12px 12px; font-size: 11px; }
+.ig__top { display: flex; align-items: center; gap: 6px; padding: 4px 0 10px; font-size: 13px; }
+.ig__top strong { flex: 1; font-weight: 700; }
+.ig__lock { font-size: 10px; }
+.ig__more { font-weight: 700; }
+.ig__head { display: flex; align-items: center; gap: 14px; }
+.ig__avatar { flex: 0 0 auto; width: 64px; height: 64px; border-radius: 50%; padding: 2px; background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
+.ig__avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+.ig__stats { flex: 1; display: flex; justify-content: space-around; text-align: center; }
+.ig__stats b { display: block; font-size: 14px; font-weight: 700; }
+.ig__stats small { font-size: 10px; color: #444; }
+.ig__bio { display: flex; flex-direction: column; gap: 1px; margin-top: 10px; line-height: 1.35; }
+.ig__bio strong { font-weight: 700; }
+.ig__cat { color: #737373; }
+.ig__bio a { color: #00376b; font-weight: 600; text-decoration: none; }
+.ig__btns { display: flex; gap: 5px; margin-top: 10px; }
+.ig__btns b { flex: 1; text-align: center; padding: 6px 0; border-radius: 7px; background: #efefef; font-size: 11px; font-weight: 600; }
+.ig__btns .is-follow { background: #0095f6; color: #fff; }
+.ig__btns .ig__btn-icon { flex: 0 0 30px; }
+.ig__hl { display: flex; gap: 12px; margin-top: 12px; }
+.ig__hl div { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.ig__hl i { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #dbdbdb; background: radial-gradient(circle at 40% 35%, #e9e6e0, #cfcbc3); }
+.ig__hl small { font-size: 9px; }
+.ig__tabs { display: flex; margin: 12px -12px 0; border-top: 1px solid #efefef; }
+.ig__tabs span { flex: 1; text-align: center; padding: 8px 0; font-size: 13px; color: #8e8e8e; }
+.ig__tabs .is-on { color: #111; border-bottom: 1.5px solid #111; }
+.ig__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 2px -12px -12px; }
+.ig__grid img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
 
 .dm {
   position: absolute; z-index: 2;
@@ -701,9 +719,9 @@ strong { font-weight: 700; }
   animation: floatIn .7s ease both;
 }
 .dm__avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #c7cbd1, #8c93a0); }
-.dm--1 { left: 50%; top: 8%; animation-delay: .2s; }
-.dm--2 { left: 58%; top: 26%; animation-delay: .5s; }
-.dm--3 { left: 46%; top: 44%; animation-delay: .8s; }
+.dm--1 { left: 58%; top: 10%; animation-delay: .2s; }
+.dm--2 { left: 64%; top: 28%; animation-delay: .5s; }
+.dm--3 { left: 54%; top: 46%; animation-delay: .8s; }
 
 .gmock {
   position: absolute; right: 0; bottom: 0; width: 58%;
@@ -881,7 +899,7 @@ strong { font-weight: 700; }
   .logos__item img { height: 30px; }
   .logos__item--light img { height: 34px; }
   .problem__visual { min-height: 0; }
-  .igmock { position: relative; width: 74%; padding: 14px; }
+  .phone { position: relative; width: 74%; }
   .dm { font-size: 12px; padding: 6px 12px 6px 6px; max-width: 58%; }
   .dm--1 { left: auto; right: 0; top: 4%; }
   .dm--2 { left: auto; right: 0; top: 24%; }
