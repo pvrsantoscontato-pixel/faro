@@ -616,12 +616,19 @@ strong { font-weight: 700; }
 .footnote { margin-top: 16px; }
 
 /* ---------- Hero v2: coluna única, título ocupando a largura ---------- */
-.hero--v2 { padding-block: clamp(56px, 8vw, 96px) clamp(48px, 6vw, 72px); }
-.hero__grid { display: block; position: relative; }
+.hero--v2 { padding-block: clamp(44px, 6vw, 72px) clamp(44px, 6vw, 64px); }
+/* Título em 3 linhas fixas; a linha da pergunta (a mais longa) dita o tamanho */
+.hero--v2 .hero__title { font-size: clamp(30px, 4.7vw, 66px); max-width: none; line-height: 1.04; margin-bottom: 30px; }
+.hero__line { display: block; }
+/* Abaixo do título: texto + CTAs à esquerda, rosto real à direita */
+.hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: center; position: relative; }
 .hero__copy { max-width: none; }
-.hero--v2 .hero__title { font-size: clamp(36px, 5.6vw, 78px); max-width: none; line-height: 1.02; margin-bottom: 26px; }
-.hero--v2 .hero__sub { max-width: 70ch; font-size: clamp(17px, 1.6vw, 22px); }
-.hero--v2 .proof-strip { margin-top: 36px; }
+.hero--v2 .hero__sub { max-width: 44ch; font-size: clamp(18px, 1.7vw, 23px); }
+.hero--v2 .proof-strip { margin-top: 32px; }
+.hero__photo { position: relative; margin: 0; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 5 / 4; border: 1px solid var(--line-dark); box-shadow: 0 30px 70px rgba(0,0,0,0.45); }
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.hero__photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 18px; background: linear-gradient(180deg, rgba(15,22,32,0) 0%, rgba(15,22,32,0.92) 70%); font-size: 14px; color: rgba(255,255,255,0.8); display: flex; flex-direction: column; gap: 2px; }
+.hero__photo figcaption strong { color: var(--white); font-size: 16px; }
 .toast {
   position: absolute; z-index: 3;
   display: flex; align-items: center; gap: 10px;
@@ -857,6 +864,10 @@ strong { font-weight: 700; }
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1024px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 28px; }
+  .hero__photo { aspect-ratio: 16 / 10; max-width: 560px; }
+  .hero__line { display: inline; }
+  .hero__line + .hero__line::before { content: " "; }
   .problem__grid { grid-template-columns: 1fr; gap: 36px; }
   .problem__visual { min-height: 460px; }
   .steps--v2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
