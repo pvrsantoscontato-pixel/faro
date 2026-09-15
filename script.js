@@ -8,6 +8,11 @@
    ========================================================= */
 
 const WHATSAPP = '5533987395357';
+
+// Google Analytics: envia um evento se a tag estiver carregada (nunca quebra o site se não estiver).
+function track(name, params) {
+  if (typeof window.gtag === 'function') window.gtag('event', name, Object.assign({ lang: LANG }, params || {}));
+}
 const LANG = (document.documentElement.lang || 'pt').toLowerCase().startsWith('en') ? 'en' : 'pt';
 // Links internos da versão EN levam ?lang=en para furar o redirect por país (quem testa do Brasil).
 const BRIEFING = LANG === 'en' ? 'briefing/?lang=en&' : 'briefing/?';
@@ -299,7 +304,13 @@ function initSimulador() {
     // Resumo curto para o briefing
     const resumo = `${t(tipo, 'nome')}${linhas.length ? ' + ' + linhas.join(', ') : ''} — ${brl.format(total)} (${t(pag, 'nome')})`;
     document.getElementById('simBriefing').href = `${BRIEFING}pacote=${encodeURIComponent(resumo)}`;
+    form.dataset.tipo = tipo.id;
+    form.dataset.total = total;
   }
+
+  // Eventos do simulador (conversões): clique no WhatsApp/e-mail e no briefing
+  document.getElementById('simWhats').addEventListener('click', () => track(LANG === 'en' ? 'quote_email' : 'quote_whatsapp', { tipo: form.dataset.tipo, value: Number(form.dataset.total), currency: CURRENCY }));
+  document.getElementById('simBriefing').addEventListener('click', () => track('briefing_click', { origem: 'simulador', tipo: form.dataset.tipo }));
 
   calcular();
 }
@@ -351,6 +362,7 @@ function initContactForm() {
       if (!res.ok) throw new Error('send failed');
       form.reset();
       status.textContent = 'Thanks! Your message is in. I’ll reply within one business day.';
+      track('generate_lead', { lead_type: 'contact_form' });
     } catch (err) {
       const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Website inquiry — ' + name)}&body=${encodeURIComponent(text)}`;
       status.innerHTML = `Something went wrong sending the form. <a href="${mailto}">Click here to send it by email instead</a>.`;
@@ -361,7 +373,21 @@ function initContactForm() {
   });
 }
 
+/* ---------- 6. Eventos de clique (WhatsApp e briefing) ---------- */
+function initTracking() {
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const sec = a.closest('section, header, footer');
+    const origem = sec ? (sec.id || sec.className.split(' ')[0]) : 'page';
+    if (a.href.includes('wa.me/') && a.id !== 'simWhats') track('whatsapp_click', { origem });
+    else if ((a.getAttribute('href') || '').includes('briefing/') && a.id !== 'simBriefing') track('briefing_click', { origem });
+    else if (a.classList.contains('project')) track('portfolio_click', { site: a.querySelector('h3')?.textContent });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initTracking();
   initContactForm();
   renderPortfolio();
   initSimulador();

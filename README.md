@@ -17,6 +17,9 @@ en/briefing/index.html questionário em inglês (mesmo /api/submit)
 vercel.json           redirecionamento por país: fora do BR → /en/, no BR → /; ?lang=xx fura a regra
 briefing/index.html   questionário de briefing (S01–S09) — envia por e-mail via /api/submit
 api/submit.js         função serverless (Vercel) que envia o briefing por e-mail via Resend
+
+Google Analytics 4: propriedade "Faro - Site" (G-F0MR56LW12), tag nas 4 páginas. Eventos enviados por script.js:
+whatsapp_click, quote_whatsapp (PT) / quote_email (EN), briefing_click, portfolio_click, generate_lead (briefing e formulário EN).
 ```
 
 ## Editar conteúdo

@@ -242,6 +242,14 @@
   .pacote{margin:6px 0 14px; padding:10px 14px; border:1px solid var(--line); border-left:3px solid var(--highlight); border-radius:6px; background:var(--surface-2); display:flex; flex-direction:column; gap:2px;}
   .pacote strong{font-size:0.95rem; font-weight:600;}
 </style>
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0MR56LW12"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F0MR56LW12');
+  </script>
 </head>
 <body>
 
@@ -746,6 +754,7 @@
       });
       if(!res.ok) throw new Error('send failed');
       showState('successState');
+      if(typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'briefing', lang: document.documentElement.lang });
     } catch(err){
       wireFallback(summary, empresa);
       showState('fallbackState');
