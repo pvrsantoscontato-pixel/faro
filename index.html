@@ -59,7 +59,12 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero hero--v2 section--dark">
-      <div class="container">
+      <!-- Fundo do hero: duas fotos alternando, com véu escuro para o texto (teste para escolher uma) -->
+      <div class="hero__bg" aria-hidden="true">
+        <img src="assets/hero-1.jpg" alt="" width="1400" height="933" fetchpriority="high">
+        <img src="assets/hero-2.jpg" alt="" width="1400" height="933">
+      </div>
+      <div class="container hero__content">
         <p class="eyebrow eyebrow--lime">Sites para pequenos e médios negócios</p>
         <h1 class="hero__title"><span class="hero__line">Chega de cliente perguntando</span><span class="hero__line hl">“vocês trabalham com isso?”</span><span class="hero__line">no seu direct.</span></h1>
 
@@ -82,11 +87,6 @@
             </ul>
           </div>
 
-          <!-- Imagem do hero: duas fotos alternando (teste para escolher uma) -->
-          <div class="hero__photo hero__photo--fade" aria-hidden="true">
-            <img src="assets/hero-1.jpg" alt="" width="1400" height="933" fetchpriority="high">
-            <img src="assets/hero-2.jpg" alt="" width="1400" height="933">
-          </div>
         </div>
       </div>
     </section>
