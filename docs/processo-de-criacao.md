@@ -65,7 +65,7 @@ Parar quando não sobrar decisão sem resposta. Registrar tudo numa tabela "Deci
 
 | Princípio | Como aplicar | No site da Faro |
 |---|---|---|
-| **Teste dos 5 segundos** | abrir pela dor do visitante, não pelo serviço | "Chega de responder 'você trabalha com isso?' no direct." em vez de "Criamos sites profissionais" |
+| **Teste dos 5 segundos** | abrir pela dor do visitante, não pelo serviço | "Chega de cliente perguntando 'vocês trabalham com isso?' no direct." em vez de "Criamos sites profissionais" |
 | **Nível de consciência** | público que sente a dor mas não sabe a solução → hero fala da dor; público que já compara → hero fala do diferencial | dor primeiro; 7 dias e preço como prova logo abaixo |
 | **Especificidade** | número, prazo, situação concreta | "no ar em até 7 dias", "a partir de R$ 900", "link na bio que só leva pro WhatsApp" |
 | **CTA que responde 3 perguntas** | o que acontece / quanto tempo / quanto custa + gatilho embaixo | "Simular meu orçamento" + "Leva 30 segundos. Sem compromisso." |

@@ -619,7 +619,7 @@ strong { font-weight: 700; }
 .hero--v2 { padding-block: clamp(56px, 8vw, 96px) clamp(48px, 6vw, 72px); }
 .hero__grid { display: block; position: relative; }
 .hero__copy { max-width: none; }
-.hero--v2 .hero__title { font-size: clamp(38px, 6.6vw, 92px); max-width: none; line-height: 1.02; margin-bottom: 26px; }
+.hero--v2 .hero__title { font-size: clamp(36px, 5.6vw, 78px); max-width: none; line-height: 1.02; margin-bottom: 26px; }
 .hero--v2 .hero__sub { max-width: 70ch; font-size: clamp(17px, 1.6vw, 22px); }
 .hero--v2 .proof-strip { margin-top: 36px; }
 .toast {
