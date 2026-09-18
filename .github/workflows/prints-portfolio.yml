@@ -1,0 +1,40 @@
+# Atualiza os prints da seção "Sites no ar" toda segunda-feira (06:00 em Brasília)
+# e faz commit se alguma imagem mudou. O Vercel republica o site sozinho a partir do push.
+# Também pode ser disparado na mão: aba Actions → "Prints do portfólio" → Run workflow.
+name: Prints do portfólio
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prints:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar puppeteer (baixa o Chrome junto)
+        run: npm install --no-save puppeteer@23
+
+      - name: Capturar os sites do portfólio
+        run: node scripts/prints-portfolio.js
+
+      - name: Commit se algum print mudou
+        run: |
+          git config user.name "faro-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/portfolio
+          if git diff --cached --quiet; then
+            echo "Nenhum print mudou."
+          else
+            git commit -m "Prints do portfólio atualizados ($(date -u +%Y-%m-%d))"
+            git push
+          fi

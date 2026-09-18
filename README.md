@@ -24,7 +24,8 @@ whatsapp_click, quote_whatsapp (PT) / quote_email (EN), briefing_click, portfoli
 
 ## Editar conteúdo
 
-- **Adicionar um site ao portfólio**: em `script.js`, acrescente um item no array `PROJETOS` (nome, categoria, cidade, descrição, URL e os dois prints em `assets/portfolio/`). As categorias do filtro estão no HTML (`#filters`) — crie um chip novo se precisar de um ramo novo.
+- **Adicionar um site ao portfólio**: em `script.js`, acrescente um item no array `PROJETOS` (nome, categoria, cidade, descrição, URL e os caminhos dos prints em `assets/portfolio/`). Os prints não precisam ser feitos à mão: `npm run prints` gera os três de cada site (precisa de `npm install` antes). As categorias do filtro estão no HTML (`#filters`) — crie um chip novo se precisar de um ramo novo.
+- **Prints do portfólio sempre atualizados**: a rotina `.github/workflows/prints-portfolio.yml` roda toda segunda-feira às 6h (Brasília), recaptura os sites listados em `PROJETOS`, e faz commit só se alguma imagem mudou — o Vercel republica sozinho. Para forçar uma atualização: GitHub → aba *Actions* → *Prints do portfólio* → *Run workflow*. Se um site estiver fora do ar naquele dia, o print antigo é mantido.
 - **Mudar preços do simulador**: em `script.js`, edite o objeto `PRECOS` (tipos de site, opcionais, pagamento). O total, a mensagem do WhatsApp e o resumo enviado ao briefing atualizam sozinhos.
 - **Copy**: direto no `index.html`, seção por seção (comentários `<!-- ===== ... ===== -->`).
 - **WhatsApp**: constante `WHATSAPP` em `script.js` e os links `wa.me` no `index.html`.
