@@ -1,6 +1,6 @@
 # Faro — site
 
-Landing page da **Faro** (criação de sites e Google Meu Negócio para pequenos e médios negócios), com simulador de orçamento, portfólio e os dois formulários de briefing (`/briefing` e `/briefing-completo`). Tudo em HTML/CSS/JS puro, sem build — publica direto no Vercel.
+Landing page da **Faro** (criação de sites e Google Meu Negócio para pequenos e médios negócios), com simulador de orçamento, portfólio e os dois formulários (`/comecar` e `/detalhes`). Tudo em HTML/CSS/JS puro, sem build — publica direto no Vercel.
 
 ## Estrutura
 
@@ -15,9 +15,10 @@ assets/paulo.jpg      foto da seção "Quem faz"
 en/index.html         versão em inglês (preços em US$, pagamento via Stripe; script.js lê o <html lang>)
 vercel.json           redirecionamento por país: fora do BR → /en/, no BR → /; ?lang=xx fura a regra
 
-briefing/             briefing rápido (10 perguntas) — público, é o link da landing
-briefing-completo/    briefing de produção (44 perguntas) — link enviado por você depois do fechamento
+comecar/              "Conte sobre o seu negócio" — 10 perguntas, público, é o link da landing
+detalhes/             "Detalhes do seu site" — 44 perguntas, link enviado por você depois do fechamento
 en/briefing/          quick brief (EN)          en/full-brief/  production brief (EN)
+                      em inglês "briefing" é palavra conhecida, então lá o nome continua esse
 assets/briefing.css   estilo dos quatro formulários
 assets/briefing.js    motor dos quatro: progresso, campos condicionais, validação, texto + .md, envio
 api/submit.js         função serverless (Vercel) que envia o briefing por e-mail via Resend
@@ -56,19 +57,19 @@ Abre em http://localhost:5500. O envio do briefing (`/api/submit`) só funciona 
    | `FROM_EMAIL` | `Faro <onboarding@resend.dev>` (opcional — já é o padrão) |
 
 4. Deploy. Depois disso, todo `git push` na `main` publica uma nova versão.
-5. Teste: abra `/briefing`, preencha e envie — chega um e-mail com assunto "Briefing rápido — [empresa]", as respostas no corpo, **um anexo `Briefing - [empresa].md`** e Reply-To no e-mail do cliente.
+5. Teste: abra `/comecar`, preencha e envie — chega um e-mail com assunto "Briefing rápido — [empresa]", as respostas no corpo, **um anexo `Briefing - [empresa].md`** e Reply-To no e-mail do cliente.
 
 ## Os dois briefings
 
-| | Briefing rápido | Briefing de produção |
+| | Conte sobre o seu negócio | Detalhes do seu site |
 |---|---|---|
-| Onde | `/briefing` — link público na landing | `/briefing-completo` — você manda o link |
+| Onde | `/comecar` — link público na landing | `/detalhes` — você manda o link |
 | Quando | antes de fechar, para montar a primeira versão do site | junto com a confirmação do pagamento |
 | Tamanho | 10 perguntas, menos de 6 minutos | 44 perguntas em 9 blocos, dá para salvar e voltar |
 | Anexo no e-mail | `Briefing - [empresa].md` | `Briefing completo - [empresa].md` |
 
-Regra que define onde cada pergunta entra: se dá para descobrir a resposta sozinho (Instagram, Google Maps, site atual), ela não entra no briefing rápido. Em inglês: `/en/briefing` e `/en/full-brief`.
+Regra que define onde cada pergunta entra: se dá para descobrir a resposta sozinho (Instagram, Google Maps, site atual), ela não entra no briefing rápido. Em inglês os nomes continuam "Quick brief" e "Production brief", em `/en/briefing` e `/en/full-brief` — lá a palavra é conhecida. Os endereços antigos (`/briefing`, `/briefing-completo`) redirecionam para os novos, então link já enviado continua funcionando.
 
 Arquivos: o formulário aceita anexo pequeno (logo, manual de marca) até 3,5 MB no total — acima disso a Vercel corta a requisição, então fotos e vídeos vão por link ou WhatsApp.
 
-O projeto antigo `formulario-seusitenoar.vercel.app` pode ser desativado ou redirecionado para `/briefing` do novo domínio.
+O projeto antigo `formulario-seusitenoar.vercel.app` pode ser desativado ou redirecionado para `/comecar` do novo domínio.

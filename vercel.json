@@ -3,57 +3,142 @@
     {
       "source": "/",
       "missing": [
-        { "type": "header", "key": "x-vercel-ip-country", "value": "BR" },
-        { "type": "query", "key": "lang" }
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        },
+        {
+          "type": "query",
+          "key": "lang"
+        }
       ],
       "destination": "/en/",
       "permanent": false
     },
     {
-      "source": "/briefing",
+      "source": "/comecar",
       "missing": [
-        { "type": "header", "key": "x-vercel-ip-country", "value": "BR" },
-        { "type": "query", "key": "lang" }
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        },
+        {
+          "type": "query",
+          "key": "lang"
+        }
       ],
       "destination": "/en/briefing/",
       "permanent": false
     },
     {
-      "source": "/briefing/",
+      "source": "/comecar/",
       "missing": [
-        { "type": "header", "key": "x-vercel-ip-country", "value": "BR" },
-        { "type": "query", "key": "lang" }
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        },
+        {
+          "type": "query",
+          "key": "lang"
+        }
       ],
       "destination": "/en/briefing/",
       "permanent": false
     },
     {
       "source": "/en",
-      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
-      "missing": [{ "type": "query", "key": "lang" }],
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        }
+      ],
+      "missing": [
+        {
+          "type": "query",
+          "key": "lang"
+        }
+      ],
       "destination": "/",
       "permanent": false
     },
     {
       "source": "/en/",
-      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
-      "missing": [{ "type": "query", "key": "lang" }],
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        }
+      ],
+      "missing": [
+        {
+          "type": "query",
+          "key": "lang"
+        }
+      ],
       "destination": "/",
       "permanent": false
     },
     {
       "source": "/en/briefing",
-      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
-      "missing": [{ "type": "query", "key": "lang" }],
-      "destination": "/briefing/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        }
+      ],
+      "missing": [
+        {
+          "type": "query",
+          "key": "lang"
+        }
+      ],
+      "destination": "/comecar/",
       "permanent": false
     },
     {
       "source": "/en/briefing/",
-      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "BR" }],
-      "missing": [{ "type": "query", "key": "lang" }],
-      "destination": "/briefing/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        }
+      ],
+      "missing": [
+        {
+          "type": "query",
+          "key": "lang"
+        }
+      ],
+      "destination": "/comecar/",
       "permanent": false
+    },
+    {
+      "source": "/briefing",
+      "destination": "/comecar/",
+      "permanent": true
+    },
+    {
+      "source": "/briefing/",
+      "destination": "/comecar/",
+      "permanent": true
+    },
+    {
+      "source": "/briefing-completo",
+      "destination": "/detalhes/",
+      "permanent": true
+    },
+    {
+      "source": "/briefing-completo/",
+      "destination": "/detalhes/",
+      "permanent": true
     }
   ]
 }

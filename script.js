@@ -15,7 +15,7 @@ function track(name, params) {
 }
 const LANG = (document.documentElement.lang || 'pt').toLowerCase().startsWith('en') ? 'en' : 'pt';
 // Links internos da versão EN levam ?lang=en para furar o redirect por país (quem testa do Brasil).
-const BRIEFING = LANG === 'en' ? 'briefing/?lang=en&' : 'briefing/?';
+const BRIEFING = LANG === 'en' ? 'briefing/?lang=en&' : 'comecar/?';
 const CONTACT_EMAIL = 'pvrsantos.contato@gmail.com';
 
 // Pega o campo no idioma da página: t(item, 'nome') → item.nome_en em inglês, item.nome em português.
@@ -381,7 +381,7 @@ function initTracking() {
     const sec = a.closest('section, header, footer');
     const origem = sec ? (sec.id || sec.className.split(' ')[0]) : 'page';
     if (a.href.includes('wa.me/') && a.id !== 'simWhats') track('whatsapp_click', { origem });
-    else if ((a.getAttribute('href') || '').includes('briefing/') && a.id !== 'simBriefing') track('briefing_click', { origem });
+    else if (/(comecar|briefing)\//.test(a.getAttribute('href') || '') && a.id !== 'simBriefing') track('briefing_click', { origem });
     else if (a.classList.contains('project')) track('portfolio_click', { site: a.querySelector('h3')?.textContent });
   });
 }

@@ -110,7 +110,8 @@ index.html      seções na ordem acima, comentários <!-- ===== SEÇÃO ===== -
 styles.css      tokens em :root, componentes, responsivo no fim
 script.js       PROJETOS[] (portfólio), PRECOS{} (simulador), menu; tudo que muda fica em array/objeto
 assets/         favicon.svg, og.jpg (1200×630), portfolio/, logos/, foto do dono
-briefing/       questionário (HTML puro) → fetch('/api/submit')
+comecar/        "Conte sobre o seu negócio", 10 perguntas → fetch('/api/submit')
+detalhes/       "Detalhes do seu site", 44 perguntas (enviado depois do fechamento)
 api/submit.js   Vercel Function → Resend (env RESEND_API_KEY, TO_EMAIL, FROM_EMAIL)
 ```
 
