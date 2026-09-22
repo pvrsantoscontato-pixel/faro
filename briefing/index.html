@@ -3,253 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faro — Briefing do seu site</title>
-<meta name="description" content="Um formulário rápido pra gente entender seu negócio e já começar a montar a estrutura e os textos do seu site.">
+<title>Faro — Briefing rápido</title>
+<meta name="description" content="Dez perguntas. Com elas a gente monta uma primeira versão do seu site para você ver antes de decidir qualquer coisa.">
 
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <meta property="og:site_name" content="Faro">
-<meta property="og:title" content="Faro — Briefing do seu site">
-<meta property="og:description" content="Um formulário rápido pra gente entender seu negócio e já começar a montar a estrutura e os textos do seu site.">
+<meta property="og:title" content="Faro — Briefing rápido">
+<meta property="og:description" content="Dez perguntas. Com elas a gente monta uma primeira versão do seu site para você ver antes de decidir qualquer coisa.">
 
 <meta property="og:image" content="https://faroagencia.vercel.app/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://faroagencia.vercel.app/assets/og.jpg">
-<meta name="twitter:title" content="Faro — Briefing do seu site">
-<meta name="twitter:description" content="Um formulário rápido pra gente entender seu negócio e já começar a montar a estrutura e os textos do seu site.">
+<meta name="twitter:title" content="Faro — Briefing rápido">
+<meta name="twitter:description" content="Dez perguntas. Com elas a gente monta uma primeira versão do seu site para você ver antes de decidir qualquer coisa.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#FFFFFF;
-    --surface:#FFFFFF;
-    --surface-2:#F3F1ED;
-    --ink:#12181F;
-    --ink-soft:#525C66;
-    --ink-faint:#7D8790;
-    --accent:#0F1620;
-    --accent-strong:#8FAF2A;
-    --on-accent:#FFFFFF;
-    --highlight:#A6C639;
-    --line:#E0DDD6;
-    --good:#1E8E3E;
-    --good-bg:#EAF7EE;
-    --danger:#D93025;
-    --danger-bg:#FDECEA;
-    --focus-ring: rgba(166,198,57,0.45);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#0F1620;
-      --surface:#0F1620;
-      --surface-2:#182230;
-      --ink:#F2F5F7;
-      --ink-soft:#A9B3BC;
-      --ink-faint:#7C8792;
-      --accent:#A6C639;
-      --accent-strong:#C5DD6E;
-      --on-accent:#0F1620;
-      --highlight:#A6C639;
-      --line:#2A3646;
-      --good:#3FB950;
-      --good-bg:#122A1C;
-      --danger:#F85149;
-      --danger-bg:#2A1414;
-      --focus-ring: rgba(166,198,57,0.40);
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0F1620;
-    --surface:#0F1620;
-    --surface-2:#182230;
-    --ink:#F2F5F7;
-    --ink-soft:#A9B3BC;
-    --ink-faint:#7C8792;
-    --accent:#A6C639;
-    --accent-strong:#C5DD6E;
-    --on-accent:#0F1620;
-    --highlight:#A6C639;
-    --line:#2A3646;
-    --good:#3FB950;
-    --good-bg:#122A1C;
-    --danger:#F85149;
-    --danger-bg:#2A1414;
-    --focus-ring: rgba(166,198,57,0.40);
-  }
+<link rel="stylesheet" href="../assets/briefing.css">
 
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:"Montserrat", system-ui, -apple-system, sans-serif;
-    padding: 32px 16px 80px;
-  }
-  h1,h2,h3{text-wrap:balance; margin:0;}
-  .mono{font-family:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;}
-  .label{
-    font-family:"IBM Plex Mono", ui-monospace, monospace;
-    font-size:0.72rem;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--accent);
-  }
-
-  .progress-rail{
-    position:sticky; top:0; z-index:20;
-    max-width:720px; margin:0 auto 24px;
-    background:var(--bg);
-    padding-top:4px;
-  }
-  .progress-track{
-    height:6px; border-radius:3px;
-    background:var(--surface-2);
-    position:relative; overflow:hidden;
-  }
-  .progress-fill{
-    height:100%; width:0%; background:var(--highlight);
-    border-radius:3px;
-    transition:width .3s ease;
-  }
-  .progress-meta{
-    display:flex; justify-content:space-between; align-items:baseline;
-    margin-top:6px; font-size:0.72rem; color:var(--ink-faint);
-  }
-
-  .sheet{max-width:720px; margin:0 auto;}
-
-  header.intro{margin-bottom:32px;}
-  .eyebrow{
-    font-family:"IBM Plex Mono", monospace; font-size:0.72rem; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--accent); margin-bottom:10px;
-  }
-  h1.title{font-size:clamp(1.9rem, 5vw, 2.5rem); font-weight:600; line-height:1.15; letter-spacing:-0.01em;}
-  .lede{color:var(--ink-soft); font-size:1rem; line-height:1.6; max-width:60ch; margin-top:14px;}
-
-  .titleblock{
-    margin-top:24px;
-    border:1px solid var(--line);
-    background:var(--surface-2);
-    border-radius:6px;
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    overflow:hidden;
-  }
-  .tb-cell{
-    padding:12px 16px;
-    border-right:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-  }
-  .tb-cell:nth-child(2n){border-right:none;}
-  .tb-cell label{display:block;}
-  .tb-cell input{width:100%; background:var(--surface);}
-  @media (max-width:520px){ .titleblock{grid-template-columns:1fr;} .tb-cell{border-right:none;} }
-
-  section.block{
-    margin-top:44px;
-    padding-top:18px;
-    border-top:1px solid var(--line);
-  }
-  .block-head{
-    display:flex; align-items:baseline; gap:12px; margin-bottom:6px;
-  }
-  .block-num{
-    font-family:"IBM Plex Mono", monospace; font-size:0.76rem; color:var(--accent);
-  }
-  .block-head h2{font-size:1.1rem; font-weight:600;}
-  .block-help{color:var(--ink-faint); font-size:0.88rem; margin:6px 0 20px; max-width:58ch; line-height:1.55;}
-
-  .field{margin-bottom:22px;}
-  .field .q{
-    display:block; font-weight:500; font-size:0.96rem; margin-bottom:6px; line-height:1.4;
-  }
-  .field .q .req{color:var(--highlight); margin-left:4px;}
-  .field .hint{color:var(--ink-faint); font-size:0.82rem; margin:0 0 8px;}
-
-  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea{
-    width:100%; font:inherit; font-size:0.95rem; color:var(--ink);
-    background:var(--surface); border:1px solid var(--line); border-radius:6px;
-    padding:10px 12px; resize:vertical;
-  }
-  textarea{min-height:84px; line-height:1.5;}
-  input:focus, textarea:focus{
-    outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--focus-ring);
-  }
-  .field.answered > input, .field.answered > textarea{border-color:var(--good);}
-
-  .choices{display:flex; flex-wrap:wrap; gap:8px;}
-  .choice{
-    display:flex; align-items:center; gap:7px;
-    border:1px solid var(--line); border-radius:20px;
-    padding:7px 13px; font-size:0.86rem; cursor:pointer;
-    background:var(--surface); color:var(--ink-soft);
-  }
-  .choice:has(input:checked){
-    border-color:var(--accent); color:var(--accent-strong); background:var(--surface-2); font-weight:500;
-  }
-  .choice input{accent-color:var(--accent);}
-  .choice.other-choice{flex-basis:100%;}
-  .choice.other-choice input[type="text"]{margin-left:2px; flex:1; min-width:140px; padding:6px 10px;}
-
-  .conditional{margin-top:8px; display:none;}
-  .conditional.show{display:block;}
-
-  footer.submit-zone{
-    margin-top:48px; padding-top:22px; border-top:1px solid var(--line);
-    display:flex; flex-direction:column; gap:14px; align-items:flex-start;
-  }
-  .btn{
-    font-family:"IBM Plex Mono", monospace; font-size:0.85rem; letter-spacing:0.03em;
-    border:none; border-radius:6px; padding:13px 24px; cursor:pointer;
-  }
-  .btn:disabled{opacity:0.6; cursor:default;}
-  .btn-primary{background:var(--accent-strong); color:var(--on-accent);}
-  .btn-primary:hover:not(:disabled){background:var(--accent);}
-  .btn-secondary{background:transparent; color:var(--accent); border:1px solid var(--line); padding:11px 22px;}
-  .btn-secondary:hover{border-color:var(--accent);}
-  .submit-note{color:var(--ink-faint); font-size:0.82rem; max-width:52ch; line-height:1.5;}
-
-  .confirm{max-width:720px; margin:0 auto; text-align:left; display:none;}
-  .confirm.show{display:block;}
-  .confirm h2{font-size:1.4rem; margin-bottom:10px;}
-  .confirm p{color:var(--ink-soft); line-height:1.6; margin:0 0 4px; max-width:58ch;}
-  .confirm .actions{display:flex; flex-wrap:wrap; gap:10px; margin:20px 0;}
-  .confirm textarea{
-    width:100%; min-height:280px; margin-top:8px;
-    font-family:"IBM Plex Mono", monospace; font-size:0.78rem; line-height:1.6;
-    background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:14px;
-  }
-  .copy-status{font-size:0.82rem; color:var(--good); display:none;}
-  .copy-status.show{display:inline;}
-
-  .state{display:none;}
-  .state.show{display:block;}
-  .state-success{padding:16px; border:1px solid var(--good); background:var(--good-bg); border-radius:6px;}
-  .state-error{padding:16px; border:1px solid var(--danger); background:var(--danger-bg); border-radius:6px; margin-bottom:20px;}
-  .state-error p{color:var(--ink);}
-
-  [hidden]{display:none!important;}
-
-  /* Faro: barra superior e resumo do pacote simulado */
-  .topbar{max-width:720px; margin:0 auto 22px; display:flex; align-items:center; justify-content:space-between; gap:12px;}
-  .topbar a{color:var(--ink); text-decoration:none; font-size:0.85rem; font-weight:600; opacity:.75;}
-  .topbar a:hover{opacity:1;}
-  .faro-logo{font-weight:900; font-size:1.35rem; letter-spacing:.06em; position:relative; display:inline-block; color:var(--ink); text-decoration:none; opacity:1!important;}
-  .faro-logo .a{position:relative; display:inline-block;}
-  .faro-logo .a i{position:absolute; top:-.46em; right:-.32em; width:.42em; height:.42em; background:#A6C639; clip-path:polygon(0 0,100% 35%,45% 100%);}
-  .pacote{margin:6px 0 14px; padding:10px 14px; border:1px solid var(--line); border-left:3px solid var(--highlight); border-radius:6px; background:var(--surface-2); display:flex; flex-direction:column; gap:2px;}
-  .pacote strong{font-size:0.95rem; font-weight:600;}
-</style>
-  <!-- Google Analytics (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0MR56LW12"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F0MR56LW12');
-  </script>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F0MR56LW12"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F0MR56LW12');
+</script>
 </head>
 <body>
 
@@ -262,270 +43,185 @@
   <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
   <div class="progress-meta">
     <span class="mono" id="progressLabel">0 / 0 campos preenchidos</span>
-    <span class="mono">S01–S09</span>
+    <span class="mono">10 perguntas</span>
   </div>
 </div>
 
 <main class="sheet">
   <header class="intro">
-    <div class="eyebrow">Faro · passo 1 de 4</div>
+    <div class="eyebrow">Faro · briefing rápido</div>
     <div class="pacote" id="pacote" hidden><span class="label">Pacote simulado</span><strong id="pacoteTexto"></strong></div>
-    <h1 class="title">Briefing do seu site</h1>
-    <p class="lede">Este formulário substitui uma reunião inteira de perguntas. Quanto mais detalhe você der em cada campo, menos a gente vai precisar adivinhar — na estrutura das páginas e nos textos que vamos escrever por você. Não existe resposta longa demais.</p>
-
-    <div class="titleblock">
-      <div class="tb-cell">
-        <span class="label">Empresa / marca</span>
-        <input type="text" id="f-company" required>
-      </div>
-      <div class="tb-cell">
-        <span class="label">Responsável pelas respostas</span>
-        <input type="text" id="f-contact-name" required>
-      </div>
-      <div class="tb-cell">
-        <span class="label">E-mail</span>
-        <input type="email" id="f-contact-email" required>
-      </div>
-      <div class="tb-cell">
-        <span class="label">WhatsApp / telefone</span>
-        <input type="tel" id="f-contact-phone">
-      </div>
-      <div class="tb-cell" style="border-bottom:none;">
-        <span class="label">Site atual (se existir)</span>
-        <input type="text" id="f-current-site" placeholder="ex: www.suaempresa.com.br ou “não tenho”">
-      </div>
-      <div class="tb-cell" style="border-bottom:none;">
-        <span class="label">Data</span>
-        <input type="date" id="f-date">
-      </div>
-    </div>
+    <h1 class="title">Briefing rápido</h1>
+    <p class="lede">Dez perguntas. Com elas a gente monta uma primeira versão do seu site para você ver antes de decidir qualquer coisa. Responda do jeito que der — o que faltar a gente pergunta depois. Leva menos de 6 minutos.</p>
   </header>
 
-  <form id="briefForm">
+  <form id="briefForm" data-brief data-lang="pt" data-kind="rapido"
+        data-title="Briefing rápido" data-file="Briefing">
 
-    <section class="block">
-      <div class="block-head"><span class="block-num">S01</span><h2>O negócio</h2></div>
-      <p class="block-help">A base de tudo: se a gente não entender o negócio direito, o site vira genérico.</p>
+    <section class="block" data-block="Identificação">
+      <div class="block-head"><span class="block-num">01</span><h2>Quem está respondendo</h2></div>
 
-      <div class="field">
-        <label class="q" for="f-what-you-do">Descreva seu negócio como se explicasse para alguém que nunca ouviu falar de você<span class="req">*</span></label>
-        <p class="hint">O que vocês fazem, para quem, e como.</p>
-        <textarea id="f-what-you-do" required></textarea>
+      <div class="field" data-label="EMPRESA" data-required>
+        <label class="q" for="f-empresa">Nome da empresa<span class="req">*</span></label>
+        <input type="text" id="f-empresa" data-company>
       </div>
 
-      <div class="field">
-        <label class="q" for="f-products">Quais são seus principais produtos ou serviços?</label>
-        <p class="hint">Liste os que geram mais receita ou que você mais quer vender.</p>
-        <textarea id="f-products"></textarea>
+      <div class="field" data-label="RESPONSÁVEL" data-required>
+        <label class="q" for="f-nome">Seu nome<span class="req">*</span></label>
+        <input type="text" id="f-nome">
       </div>
 
-      <div class="field">
-        <label class="q" for="f-known-for">Hoje você é conhecido por fazer o quê? E daqui a um ano, quer ser conhecido por fazer o quê?</label>
-        <textarea id="f-known-for"></textarea>
-      </div>
-
-    </section>
-
-    <section class="block">
-      <div class="block-head"><span class="block-num">S02</span><h2>Público-alvo</h2></div>
-      <p class="block-help">Quem vai ler o site define o tom, os argumentos e a ordem das informações.</p>
-
-      <div class="field">
-        <label class="q" for="f-audience">Quem é o seu cliente ideal?<span class="req">*</span></label>
-        <p class="hint">Idade, localização, se é pessoa física ou empresa, perfil de vida ou de negócio.</p>
-        <textarea id="f-audience" required></textarea>
-      </div>
-
-      <div class="field">
-        <label class="q" for="f-pain">Que problema ou dor esse cliente tem, que você resolve?</label>
-        <textarea id="f-pain"></textarea>
-      </div>
-
-      <div class="field">
-        <label class="q" for="f-audience-tone">Como esse público fala? Que linguagem ele espera de você?</label>
-        <div class="choices" id="audienceToneChoices">
-          <label class="choice"><input type="checkbox" value="Formal"> Formal</label>
-          <label class="choice"><input type="checkbox" value="Próxima e descontraída"> Próxima e descontraída</label>
-          <label class="choice"><input type="checkbox" value="Técnica"> Técnica</label>
-          <label class="choice"><input type="checkbox" value="Premium/sofisticada"> Premium / sofisticada</label>
-          <label class="choice"><input type="checkbox" value="Direta e objetiva"> Direta e objetiva</label>
-        </div>
+      <div class="field" data-label="CONTATO" data-required>
+        <label class="q" for="f-contato">WhatsApp ou e-mail para receber a prévia<span class="req">*</span></label>
+        <input type="text" id="f-contato" data-replyto>
       </div>
     </section>
 
-    <section class="block">
-      <div class="block-head"><span class="block-num">S03</span><h2>Concorrência e referências</h2></div>
-      <p class="block-help">Sites concretos valem mais que adjetivos soltos — usamos isso para calibrar visual e tom.</p>
+    <section class="block" data-block="O negócio">
+      <div class="block-head"><span class="block-num">02</span><h2>O que você faz</h2></div>
 
-      <div class="field">
-        <label class="q" for="f-likes">2–3 sites (concorrentes ou não) que você admira, e o que gosta neles</label>
-        <textarea id="f-likes"></textarea>
+      <div class="field" data-label="NEGÓCIO" data-required>
+        <label class="q" for="f-negocio">1. O que a sua empresa faz, para quem, e em que cidade ou região?<span class="req">*</span></label>
+        <p class="hint">Explique como se a pessoa nunca tivesse ouvido falar de você. Diga também até onde você atende: só a cidade, a região, o estado, o Brasil inteiro ou online.</p>
+        <textarea id="f-negocio" rows="4"></textarea>
       </div>
 
-    </section>
-
-    <section class="block">
-      <div class="block-head"><span class="block-num">S04</span><h2>Objetivo do site</h2></div>
-      <p class="block-help">Isso define a prioridade de cada página e o botão que vai aparecer em todo canto.</p>
-
-      <div class="field">
-        <label class="q">Qual é o objetivo principal do site?<span class="req">*</span></label>
-        <div class="choices" id="goalChoices">
-          <label class="choice"><input type="radio" name="goal" value="Gerar leads / pedidos de orçamento" required> Gerar leads / orçamentos</label>
-          <label class="choice"><input type="radio" name="goal" value="Vender online"> Vender online</label>
-          <label class="choice"><input type="radio" name="goal" value="Divulgar portfólio"> Divulgar portfólio</label>
-          <label class="choice"><input type="radio" name="goal" value="Fortalecer a marca / institucional"> Fortalecer a marca</label>
-          <label class="choice"><input type="radio" name="goal" value="Dar suporte a clientes atuais"> Suporte a clientes</label>
-          <label class="choice other-choice"><input type="radio" name="goal" value="Outro"> Outro: <input type="text" id="f-goal-other" placeholder="descreva"></label>
+      <div class="starred">
+        <label class="q">2. Links do seu Instagram e do Google Maps</label>
+        <p class="hint">É daqui que a gente tira foto, texto e as avaliações dos seus clientes — <strong>responder isso poupa você de várias outras perguntas</strong>. Se não tiver, escreva “não tenho”.</p>
+        <div class="grid-2">
+          <div class="field" data-label="INSTAGRAM">
+            <input type="text" id="f-instagram" placeholder="Instagram" aria-label="Instagram">
+          </div>
+          <div class="field" data-label="GOOGLE MAPS">
+            <input type="text" id="f-maps" placeholder="Google Maps" aria-label="Google Maps">
+          </div>
         </div>
       </div>
 
-      <div class="field">
-        <label class="q" for="f-primary-action">Qual é a ação que você mais quer que o visitante realize?</label>
-        <p class="hint">Ex: “pedir orçamento pelo WhatsApp”, “comprar”, “agendar uma visita”.</p>
-        <input type="text" id="f-primary-action">
+      <div class="field" data-label="PRODUTOS" data-required>
+        <label class="q" for="f-produtos">3. Quais são os principais produtos ou serviços que você quer vender?<span class="req">*</span></label>
+        <p class="hint">Liste até quatro, começando pelo que dá mais dinheiro ou pelo que você mais quer vender.</p>
+        <textarea id="f-produtos" rows="4"></textarea>
       </div>
 
-      <div class="field">
-        <label class="q" for="f-success">Daqui a 6–12 meses, como você vai saber que o site deu certo?</label>
-        <p class="hint">Se possível, um número: “20 orçamentos/mês”, “dobrar as vendas online”.</p>
-        <textarea id="f-success"></textarea>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="block-head"><span class="block-num">S05</span><h2>Diferenciais e prova</h2></div>
-      <p class="block-help">Isso vira os argumentos de venda do texto — a parte que convence.</p>
-
-      <div class="field">
-        <label class="q" for="f-different">O que você faz diferente ou melhor que a concorrência?<span class="req">*</span></label>
-        <textarea id="f-different" required></textarea>
+      <div class="field" data-label="CLIENTE IDEAL" data-required>
+        <label class="q" for="f-cliente">4. Quem é o seu cliente ideal, e o que o incomoda antes de procurar você?<span class="req">*</span></label>
+        <p class="hint">Quem é (pessoa ou empresa, idade, região, perfil) e qual o problema que faz ele ir atrás de alguém como você.</p>
+        <textarea id="f-cliente" rows="4"></textarea>
       </div>
 
-      <div class="field">
-        <label class="q" for="f-nicest">Qual foi a coisa mais legal que um cliente já disse sobre você?</label>
-        <textarea id="f-nicest"></textarea>
-      </div>
-
-      <div class="field">
-        <label class="q" for="f-proof">Tem depoimentos, cases, números (“+500 clientes atendidos”), prêmios ou certificações?</label>
-        <textarea id="f-proof"></textarea>
+      <div class="field" data-label="DIFERENCIAL" data-required>
+        <label class="q" for="f-diferencial">5. Por que os clientes escolhem você e não o concorrente?<span class="req">*</span></label>
+        <p class="hint">O que você faz diferente, melhor ou mais rápido. Vale coisa simples: “atendo no mesmo dia”, “sou o único da região que faz X”.</p>
+        <textarea id="f-diferencial" rows="3"></textarea>
       </div>
     </section>
 
-    <section class="block">
-      <div class="block-head"><span class="block-num">S06</span><h2>Tom de voz</h2></div>
-      <p class="block-help">Como o site deve “soar” quando alguém lê.</p>
+    <section class="block" data-block="O que o site precisa fazer">
+      <div class="block-head"><span class="block-num">03</span><h2>O que o site precisa fazer</h2></div>
 
-      <div class="field">
-        <label class="q" for="f-adjectives">Escolha 3 a 5 adjetivos que descrevem sua marca</label>
-        <p class="hint">Ex: confiável, acessível, ousada, técnica, acolhedora.</p>
-        <input type="text" id="f-adjectives">
-      </div>
-
-      <div class="field">
-        <label class="q" for="f-feel">Como você quer que o visitante se sinta ao entrar no site?</label>
-        <textarea id="f-feel"></textarea>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="block-head"><span class="block-num">S07</span><h2>Estrutura e conteúdo</h2></div>
-      <p class="block-help">O esqueleto do site e o que já está pronto para usar.</p>
-
-      <div class="field">
-        <label class="q">Quais páginas você imagina no site?</label>
+      <div class="field" data-label="AÇÃO PRINCIPAL" data-required>
+        <label class="q">6. O que você quer que a pessoa faça quando entrar no site?<span class="req">*</span></label>
         <div class="choices">
-          <label class="choice"><input type="checkbox" value="Home"> Home</label>
-          <label class="choice"><input type="checkbox" value="Sobre"> Sobre</label>
-          <label class="choice"><input type="checkbox" value="Serviços"> Serviços</label>
-          <label class="choice"><input type="checkbox" value="Produtos"> Produtos</label>
-          <label class="choice"><input type="checkbox" value="Portfólio"> Portfólio</label>
-          <label class="choice"><input type="checkbox" value="Blog"> Blog</label>
-          <label class="choice"><input type="checkbox" value="Loja online"> Loja online</label>
-          <label class="choice"><input type="checkbox" value="FAQ"> FAQ</label>
-          <label class="choice"><input type="checkbox" value="Contato"> Contato</label>
-          <label class="choice other-choice"><input type="checkbox" value="Outra"> Outra: <input type="text" id="f-pages-other" placeholder="descreva"></label>
+          <label class="choice"><input type="radio" name="acao" value="Chamar no WhatsApp"> Chamar no WhatsApp</label>
+          <label class="choice"><input type="radio" name="acao" value="Preencher um formulário de orçamento"> Preencher um formulário de orçamento</label>
+          <label class="choice"><input type="radio" name="acao" value="Ligar"> Ligar</label>
+          <label class="choice"><input type="radio" name="acao" value="Agendar um horário"> Agendar um horário</label>
+          <label class="choice"><input type="radio" name="acao" value="Comprar online"> Comprar online</label>
+          <label class="choice other-choice"><input type="radio" name="acao" value="Outro"> Outro: <input type="text" id="f-acao-outro" placeholder="descreva"></label>
         </div>
       </div>
 
-      <div class="field">
-        <label class="q">Você já tem algum material pronto?</label>
+      <div class="field" data-label="CONTATO DO SITE" data-required>
+        <label class="q" for="f-contato-site">Qual número, e-mail ou link deve aparecer no site?<span class="req">*</span></label>
+        <p class="hint">É o contato que vai no botão. Pode ser diferente do seu contato pessoal.</p>
+        <input type="text" id="f-contato-site">
+      </div>
+
+      <div class="field" data-label="PREÇO" data-required>
+        <label class="q">7. Você quer mostrar preço no site?<span class="req">*</span></label>
+        <p class="hint">Preço visível filtra quem não tem orçamento e reduz o “quanto custa?” no WhatsApp. Mas a escolha é sua.</p>
         <div class="choices">
-          <label class="choice"><input type="checkbox" value="Textos escritos"> Textos escritos</label>
-          <label class="choice"><input type="checkbox" value="Fotos profissionais"> Fotos profissionais</label>
-          <label class="choice"><input type="checkbox" value="Vídeos"> Vídeos</label>
-          <label class="choice"><input type="checkbox" value="Logo em alta resolução"> Logo em alta resolução</label>
-          <label class="choice"><input type="checkbox" value="Manual de marca"> Manual de marca</label>
-          <label class="choice"><input type="checkbox" value="Nenhum ainda"> Nenhum ainda</label>
+          <label class="choice"><input type="radio" name="preco" value="Sim, mostrar os valores" data-flag="mostrar"> Sim, mostrar os valores</label>
+          <label class="choice"><input type="radio" name="preco" value="Mostrar só “a partir de”" data-flag="mostrar"> Mostrar só “a partir de”</label>
+          <label class="choice"><input type="radio" name="preco" value="Não mostrar preço" data-flag="nao"> Não mostrar preço</label>
+        </div>
+      </div>
+
+      <div class="conditional" data-show="preco" data-show-values="mostrar">
+        <div class="field" data-label="VALORES">
+          <label class="q" for="f-valores">Quais valores?</label>
+          <textarea id="f-valores" rows="3"></textarea>
         </div>
       </div>
     </section>
 
-    <section class="block">
-      <div class="block-head"><span class="block-num">S08</span><h2>Funcionalidades</h2></div>
-      <p class="block-help">O que o site precisa fazer, além de mostrar informação.</p>
+    <section class="block" data-block="Visual e situação atual">
+      <div class="block-head"><span class="block-num">04</span><h2>Visual e situação atual</h2></div>
 
-      <div class="field">
-        <label class="q">Quais funcionalidades você precisa?</label>
+      <div class="field" data-label="ESTILO">
+        <label class="q">8. Qual estilo combina mais com a sua marca?</label>
+        <p class="hint">Só para dar o ponto de partida. Dá para mudar depois.</p>
+        <div class="style-grid">
+          <label class="style-card">
+            <input type="radio" name="estilo" value="Sóbrio e profissional">
+            <svg viewBox="0 0 120 80" aria-hidden="true"><rect width="120" height="80" fill="#12181F"/><rect x="10" y="10" width="26" height="4" rx="2" fill="#7D8790"/><rect x="76" y="10" width="34" height="4" rx="2" fill="#39424E"/><rect x="10" y="30" width="54" height="7" rx="2" fill="#F2F5F7"/><rect x="10" y="42" width="40" height="7" rx="2" fill="#F2F5F7"/><rect x="10" y="58" width="30" height="9" rx="3" fill="#A6C639"/><rect x="74" y="28" width="36" height="39" rx="3" fill="#232C38"/></svg>
+            <span class="style-name">Sóbrio e profissional</span>
+            <span class="style-desc">Tons escuros ou neutros, tipografia firme, pouca cor.</span>
+          </label>
+          <label class="style-card">
+            <input type="radio" name="estilo" value="Colorido e acolhedor">
+            <svg viewBox="0 0 120 80" aria-hidden="true"><rect width="120" height="80" fill="#FFF4E8"/><circle cx="24" cy="24" r="12" fill="#F2A65A"/><rect x="44" y="16" width="52" height="6" rx="3" fill="#C0553B"/><rect x="44" y="28" width="38" height="5" rx="2.5" fill="#E08A6E"/><rect x="10" y="48" width="30" height="22" rx="4" fill="#7FB685"/><rect x="45" y="48" width="30" height="22" rx="4" fill="#F2C14E"/><rect x="80" y="48" width="30" height="22" rx="4" fill="#E27D60"/></svg>
+            <span class="style-name">Colorido e acolhedor</span>
+            <span class="style-desc">Cores quentes, fotos de pessoas, sensação próxima.</span>
+          </label>
+          <label class="style-card">
+            <input type="radio" name="estilo" value="Minimalista e direto">
+            <svg viewBox="0 0 120 80" aria-hidden="true"><rect width="120" height="80" fill="#FFFFFF"/><rect x="14" y="12" width="14" height="3" rx="1.5" fill="#12181F"/><rect x="14" y="34" width="62" height="5" rx="2" fill="#12181F"/><rect x="14" y="45" width="34" height="3" rx="1.5" fill="#B7BDC3"/><rect x="14" y="60" width="26" height="1.5" fill="#12181F"/><circle cx="96" cy="40" r="14" fill="none" stroke="#E0DDD6" stroke-width="2"/></svg>
+            <span class="style-name">Minimalista e direto</span>
+            <span class="style-desc">Muito espaço em branco, poucas palavras, foco no produto.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" data-label="SITE ATUAL" data-required>
+        <label class="q">9. Você já tem site hoje?<span class="req">*</span></label>
         <div class="choices">
-          <label class="choice"><input type="checkbox" value="Formulário de contato"> Formulário de contato</label>
-          <label class="choice"><input type="checkbox" value="WhatsApp / chat"> WhatsApp / chat</label>
-          <label class="choice"><input type="checkbox" value="Agendamento online"> Agendamento online</label>
-          <label class="choice"><input type="checkbox" value="Loja / checkout"> Loja / checkout</label>
-          <label class="choice"><input type="checkbox" value="Área de login / cliente"> Área de login / cliente</label>
-          <label class="choice"><input type="checkbox" value="Newsletter / e-mail marketing"> Newsletter</label>
-          <label class="choice"><input type="checkbox" value="Múltiplos idiomas"> Múltiplos idiomas</label>
-          <label class="choice"><input type="checkbox" value="Integração com CRM/ERP"> Integração com CRM/ERP</label>
-          <label class="choice other-choice"><input type="checkbox" value="Outra"> Outra: <input type="text" id="f-features-other" placeholder="descreva"></label>
+          <label class="choice"><input type="radio" name="site" value="Sim" data-flag="sim"> Sim</label>
+          <label class="choice"><input type="radio" name="site" value="Não" data-flag="nao"> Não</label>
         </div>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="block-head"><span class="block-num">S09</span><h2>Domínio, ferramentas e processo</h2></div>
-      <p class="block-help">O lado prático: o que já existe e como o projeto vai andar.</p>
-
-      <div class="field">
-        <label class="q">Você já tem domínio e hospedagem?</label>
-        <div class="choices" id="domainChoices">
-          <label class="choice"><input type="radio" name="domain" value="Sim, já tenho"> Sim, já tenho</label>
-          <label class="choice"><input type="radio" name="domain" value="Não, preciso de ajuda"> Não, preciso de ajuda</label>
-        </div>
-        <div class="conditional" id="domainDetail">
-          <input type="text" id="f-domain-detail" placeholder="Qual domínio / onde está hospedado?">
+        <div class="conditional" data-show="site" data-show-values="sim">
+          <input type="text" id="f-site-url" placeholder="Qual o endereço?">
         </div>
       </div>
 
-      <div class="field">
-        <label class="q">Quais ferramentas ou canais você já usa hoje?</label>
-        <div class="choices">
-          <label class="choice"><input type="checkbox" value="Instagram"> Instagram</label>
-          <label class="choice"><input type="checkbox" value="WhatsApp Business"> WhatsApp Business</label>
-          <label class="choice"><input type="checkbox" value="Google Meu Negócio"> Google Meu Negócio</label>
-          <label class="choice"><input type="checkbox" value="Planilhas"> Planilhas</label>
-          <label class="choice"><input type="checkbox" value="Sistema / ERP próprio"> Sistema / ERP próprio</label>
-          <label class="choice"><input type="checkbox" value="Nenhuma"> Nenhuma</label>
+      <div class="conditional" data-show="site" data-show-values="sim">
+        <div class="field" data-label="PROBLEMA DO SITE ATUAL">
+          <label class="q" for="f-site-problema">O que te incomoda nele?</label>
+          <p class="hint">Lento, feio, não aparece no Google, não tem botão de WhatsApp, você não consegue editar.</p>
+          <textarea id="f-site-problema" rows="3"></textarea>
         </div>
       </div>
 
-      <div class="field">
-        <label class="q" for="f-approver">Quem aprova o conteúdo e o design final?</label>
-        <input type="text" id="f-approver" placeholder="nome / cargo">
+      <div class="field" data-label="NÃO PODE FALTAR">
+        <label class="q" for="f-obrigatorio">10. Tem alguma coisa que não pode faltar no site?</label>
+        <p class="hint">Uma informação, uma foto, um aviso obrigatório do seu setor, uma frase que você usa sempre.</p>
+        <textarea id="f-obrigatorio" rows="3"></textarea>
       </div>
 
-      <div class="field">
-        <label class="q" for="f-other">Alguma outra informação importante que a gente não perguntou?</label>
-        <textarea id="f-other"></textarea>
+      <div class="field file-field" data-label="LOGO">
+        <label class="q" for="f-logo">Se tiver o arquivo do seu logo, anexe aqui</label>
+        <p class="hint">De preferência o arquivo original (SVG, AI, EPS ou PDF). Se só tiver uma imagem, serve.</p>
+        <input type="file" id="f-logo">
+        <p class="file-note" id="fileNote"></p>
       </div>
     </section>
 
     <footer class="submit-zone">
-      <div class="state-error" id="errorState" hidden>
-        <p><strong>Não consegui enviar automaticamente.</strong> Sem problema — copie o texto abaixo e envie por e-mail ou WhatsApp.</p>
-      </div>
+      <div class="state-error" id="validationError" hidden><p></p></div>
       <button type="submit" class="btn btn-primary" id="submitBtn">Enviar respostas</button>
-      <p class="submit-note">Ao enviar, um e-mail com tudo que você preencheu vai direto pra gente.</p>
+      <p class="submit-note">Ao enviar, um e-mail com tudo que você preencheu vai direto pra gente. Se algo ficou em branco, sem problema — a gente pergunta depois.</p>
     </footer>
   </form>
 
@@ -538,15 +234,16 @@
     <div class="state" id="successState">
       <div class="state-success">
         <h2>Recebido ✔</h2>
-        <p>Suas respostas já chegaram por e-mail. Obrigado pelo tempo — isso é a matéria-prima que vai virar a estrutura e os textos do seu site.</p>
+        <p>Suas respostas já chegaram por e-mail. Com elas a gente monta a primeira versão do seu site e te manda o link — sem compromisso.</p>
       </div>
     </div>
 
     <div class="state" id="fallbackState">
       <h2>Suas respostas estão prontas</h2>
-      <p>O envio automático falhou, mas nada foi perdido — copie o texto abaixo e envie por e-mail ou WhatsApp para <strong>pvrsantos.contato@gmail.com</strong>.</p>
+      <p>O envio automático falhou, mas nada foi perdido — copie o texto abaixo, baixe o arquivo ou mande por e-mail para <strong>pvrsantos.contato@gmail.com</strong>.</p>
       <div class="actions">
         <button type="button" class="btn btn-primary" id="copyBtn">Copiar respostas</button>
+        <button type="button" class="btn btn-secondary" id="downloadBtn">Baixar o arquivo .md</button>
         <button type="button" class="btn btn-secondary" id="mailBtn">Abrir e-mail já preenchido</button>
         <span class="copy-status mono" id="copyStatus">Copiado ✓</span>
       </div>
@@ -555,212 +252,6 @@
   </div>
 </main>
 
-<script>
-(function(){
-  const TARGET_EMAIL = 'pvrsantos.contato@gmail.com';
-
-  const form = document.getElementById('briefForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const errorState = document.getElementById('errorState');
-  const confirmBox = document.getElementById('confirmBox');
-  const sendingState = document.getElementById('sendingState');
-  const successState = document.getElementById('successState');
-  const fallbackState = document.getElementById('fallbackState');
-  const progressFill = document.getElementById('progressFill');
-  const progressLabel = document.getElementById('progressLabel');
-  const progressRail = document.getElementById('progressRail');
-  const dateField = document.getElementById('f-date');
-  if(dateField && !dateField.value){
-    dateField.value = new Date().toISOString().slice(0,10);
-  }
-
-  const domainRadios = document.querySelectorAll('input[name="domain"]');
-  const domainDetail = document.getElementById('domainDetail');
-  domainRadios.forEach(r => r.addEventListener('change', () => {
-    domainDetail.classList.toggle('show', r.value === 'Sim, já tenho' && r.checked);
-  }));
-
-  function trackable(){
-    return Array.from(document.querySelectorAll('.field, .tb-cell'));
-  }
-  function isAnswered(el){
-    const inputs = el.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
-    const checks = el.querySelectorAll('input[type="checkbox"], input[type="radio"]');
-    const textFilled = Array.from(inputs).some(i => i.value.trim().length > 0);
-    const checkedAny = Array.from(checks).some(i => i.checked);
-    return textFilled || checkedAny;
-  }
-  function updateProgress(){
-    const items = trackable();
-    let done = 0;
-    items.forEach(el => {
-      const ok = isAnswered(el);
-      el.classList.toggle('answered', ok);
-      if(ok) done++;
-    });
-    const pct = items.length ? Math.round((done/items.length)*100) : 0;
-    progressFill.style.width = pct + '%';
-    progressLabel.textContent = done + ' / ' + items.length + ' campos preenchidos';
-  }
-  document.addEventListener('input', updateProgress);
-  document.addEventListener('change', updateProgress);
-  updateProgress();
-
-  function collectChoices(container){
-    return container ? Array.from(container.querySelectorAll('input[type="checkbox"]:checked')).map(i => i.value) : [];
-  }
-  function val(id){ return document.getElementById(id).value.trim(); }
-
-  function buildAnswers(){
-    const goalRadio = document.querySelector('input[name="goal"]:checked');
-    const domainRadio = document.querySelector('input[name="domain"]:checked');
-    const s07 = form.querySelectorAll('section.block:nth-of-type(7) .choices');
-    const s09 = form.querySelectorAll('section.block:nth-of-type(9) .choices');
-
-    return [
-      {section:'Identificação', items:[
-        ['Empresa / marca', val('f-company')],
-        ['Responsável', val('f-contact-name')],
-        ['E-mail', val('f-contact-email')],
-        ['WhatsApp / telefone', val('f-contact-phone')],
-        ['Site atual', val('f-current-site')],
-        ['Data', val('f-date')],
-      ]},
-      {section:'S01 — O negócio', items:[
-        ['Descrição do negócio', val('f-what-you-do')],
-        ['Principais produtos/serviços', val('f-products')],
-        ['Conhecido por / quer ser conhecido por', val('f-known-for')],
-      ]},
-      {section:'S02 — Público-alvo', items:[
-        ['Cliente ideal', val('f-audience')],
-        ['Dor que resolve', val('f-pain')],
-        ['Linguagem esperada', collectChoices(document.getElementById('audienceToneChoices')).join(', ')],
-      ]},
-      {section:'S03 — Concorrência e referências', items:[
-        ['Sites que admira', val('f-likes')],
-      ]},
-      {section:'S04 — Objetivo do site', items:[
-        ['Objetivo principal', goalRadio ? goalRadio.value : '', val('f-goal-other')],
-        ['Ação prioritária do visitante', val('f-primary-action')],
-        ['Sucesso em 6–12 meses', val('f-success')],
-      ]},
-      {section:'S05 — Diferenciais e prova', items:[
-        ['O que diferencia', val('f-different')],
-        ['Elogio marcante', val('f-nicest')],
-        ['Prova social', val('f-proof')],
-      ]},
-      {section:'S06 — Tom de voz', items:[
-        ['Adjetivos da marca', val('f-adjectives')],
-        ['Como quer que o visitante se sinta', val('f-feel')],
-      ]},
-      {section:'S07 — Estrutura e conteúdo', items:[
-        ['Páginas desejadas', collectChoices(s07[0]).concat(val('f-pages-other') ? [val('f-pages-other')] : []).join(', ')],
-        ['Material já pronto', collectChoices(s07[1]).join(', ')],
-      ]},
-      {section:'S08 — Funcionalidades', items:[
-        ['Funcionalidades', collectChoices(document.querySelector('section.block:nth-of-type(8) .choices')).concat(val('f-features-other') ? [val('f-features-other')] : []).join(', ')],
-      ]},
-      {section:'S09 — Domínio, ferramentas e processo', items:[
-        ['Domínio/hospedagem', domainRadio ? domainRadio.value : '', val('f-domain-detail')],
-        ['Ferramentas atuais', collectChoices(s09[1]).join(', ')],
-        ['Quem aprova', val('f-approver')],
-        ['Outras informações', val('f-other')],
-      ]},
-    ];
-  }
-
-  function formatSummary(groups, empresa){
-    let out = 'BRIEFING DE SITE — ' + empresa.toUpperCase() + '\n';
-    if(PACOTE) out += 'Pacote simulado no site: ' + PACOTE + '\n';
-    groups.forEach(g => {
-      const lines = g.items
-        .map(([label, mainVal, extra]) => {
-          let v = (mainVal || '').trim();
-          if(extra && extra.trim()) v = v ? v + ' — ' + extra.trim() : extra.trim();
-          return v ? label + ': ' + v : null;
-        })
-        .filter(Boolean);
-      if(lines.length){
-        out += '\n' + g.section + '\n';
-        lines.forEach(l => out += '  ' + l + '\n');
-      }
-    });
-    return out.trim();
-  }
-
-  function showState(id){
-    [sendingState, successState, fallbackState].forEach(s => s.classList.remove('show'));
-    document.getElementById(id).classList.add('show');
-  }
-
-  function wireFallback(summary, empresa){
-    document.getElementById('summaryText').value = summary;
-    const mailBtn = document.getElementById('mailBtn');
-    mailBtn.onclick = function(){
-      const subject = encodeURIComponent('Briefing de site — ' + empresa);
-      const body = encodeURIComponent(summary);
-      window.location.href = 'mailto:' + TARGET_EMAIL + '?subject=' + subject + '&body=' + body;
-    };
-    const copyBtn = document.getElementById('copyBtn');
-    const copyStatus = document.getElementById('copyStatus');
-    copyBtn.onclick = async function(){
-      const ta = document.getElementById('summaryText');
-      try{
-        await navigator.clipboard.writeText(summary);
-      } catch(err){
-        ta.focus();
-        ta.select();
-        try{ document.execCommand('copy'); } catch(err2){ /* selection stays for manual copy */ }
-      }
-      copyStatus.classList.add('show');
-      setTimeout(() => copyStatus.classList.remove('show'), 2500);
-    };
-  }
-
-  // Resumo do pacote vindo do simulador da landing page (?pacote=...)
-  const PACOTE = new URLSearchParams(location.search).get('pacote') || '';
-  if(PACOTE){
-    document.getElementById('pacoteTexto').textContent = PACOTE;
-    document.getElementById('pacote').hidden = false;
-  }
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    if(!form.reportValidity()) return;
-
-    errorState.hidden = true;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando…';
-
-    const empresa = val('f-company') || 'cliente';
-    const groups = buildAnswers();
-    const summary = formatSummary(groups, empresa);
-
-    form.hidden = true;
-    progressRail.hidden = true;
-    confirmBox.classList.add('show');
-    showState('sendingState');
-    window.scrollTo({top:0, behavior:'smooth'});
-
-    try{
-      const res = await fetch('/api/submit', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({
-          subject: 'Briefing de site — ' + empresa,
-          text: summary,
-          replyTo: val('f-contact-email') || undefined,
-        }),
-      });
-      if(!res.ok) throw new Error('send failed');
-      showState('successState');
-      if(typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'briefing', lang: document.documentElement.lang });
-    } catch(err){
-      wireFallback(summary, empresa);
-      showState('fallbackState');
-    }
-  });
-})();
-</script>
+<script src="../assets/briefing.js"></script>
 </body>
 </html>

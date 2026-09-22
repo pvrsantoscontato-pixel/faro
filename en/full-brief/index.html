@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faro — Production brief</title>
+<meta name="description" content="The details we still need to finish your website. You can save and come back later.">
+<meta name="robots" content="noindex">
+
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<meta property="og:site_name" content="Faro">
+<meta property="og:title" content="Faro — Production brief">
+<meta property="og:description" content="The details we still need to finish your website. You can save and come back later.">
+<meta property="og:image" content="https://faroagencia.vercel.app/assets/og-en.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/briefing.css">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F0MR56LW12"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F0MR56LW12');
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="faro-logo" href="../?lang=en" aria-label="Faro — back to the site">F<span class="a">A<i aria-hidden="true"></i></span>RO</a>
+  <a href="../?lang=en">← Back to the site</a>
+</div>
+
+<div class="progress-rail" id="progressRail">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-meta">
+    <span class="mono" id="progressLabel">0 / 0 fields filled in</span>
+    <span class="mono" id="draftStatus">A · I</span>
+  </div>
+</div>
+
+<main class="sheet">
+  <header class="intro">
+    <div class="eyebrow">Faro · production brief</div>
+    <h1 class="title">Production brief</h1>
+    <p class="lede">Now that the site is actually going out, we need the details. It is longer than the first one, but it is what stops us from pestering you with scattered questions for the next few weeks. <strong>You can save and come back later</strong> — what you type stays in this browser.</p>
+    <p class="lede">44 questions across 9 blocks. Only the ones marked with <span style="color:var(--highlight)">*</span> are required — they are the ones that block delivery. Everything else can be left blank.</p>
+  </header>
+
+  <form id="briefForm" data-brief data-lang="en" data-kind="production"
+        data-title="Production brief" data-file="Full brief" data-autosave="faro-briefing-completo-en">
+
+    <section class="block" data-block="Identification">
+      <div class="block-head"><span class="block-num">—</span><h2>Who is answering</h2></div>
+      <div class="field" data-label="COMPANY" data-required>
+        <label class="q" for="f-empresa">Company name<span class="req">*</span></label>
+        <input type="text" id="f-empresa" data-company>
+      </div>
+      <div class="field" data-label="CONTACT PERSON" data-required>
+        <label class="q" for="f-resp">Your name<span class="req">*</span></label>
+        <input type="text" id="f-resp">
+      </div>
+      <div class="field" data-label="EMAIL" data-required>
+        <label class="q" for="f-resp-email">Your email<span class="req">*</span></label>
+        <input type="email" id="f-resp-email" data-replyto>
+      </div>
+    </section>
+
+    <section class="block" data-block="A · Footer and legal details">
+      <div class="block-head"><span class="block-num">A</span><h2>Footer and legal details</h2></div>
+
+      <div class="field" data-label="01 · LEGAL NAME AND REGISTRATION" data-required>
+        <label class="q" for="f-a1">1. Legal company name and registration number<span class="req">*</span></label>
+        <p class="hint">This appears in the footer. If you are a sole trader without one, write “none”.</p>
+        <input type="text" id="f-a1">
+      </div>
+
+      <div class="field" data-label="02 · ADDRESS" data-required>
+        <label class="q" for="f-a2">2. Full address<span class="req">*</span></label>
+        <p class="hint">If you do not serve customers at this address, or do not want it published, tick the box below.</p>
+        <textarea id="f-a2" rows="3"></textarea>
+        <div class="choices" style="margin-top:8px">
+          <label class="choice"><input type="checkbox" name="endpub" value="Do not publish the address"> Do not publish my address</label>
+        </div>
+      </div>
+
+      <div class="field" data-label="03 · OPENING HOURS" data-required>
+        <label class="q" for="f-a3">3. Opening hours<span class="req">*</span></label>
+        <p class="hint">Days and times, including weekends and holidays if relevant.</p>
+        <textarea id="f-a3" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-label="04 · SITE CONTACTS" data-required>
+        <label class="q">4. Phone, messaging number and email that should appear on the site<span class="req">*</span></label>
+        <p class="hint">These can be different from your personal contact details.</p>
+        <div class="grid-2">
+          <input type="text" id="f-a4-tel" placeholder="Phone" aria-label="Phone">
+          <input type="text" id="f-a4-zap" placeholder="WhatsApp / messaging" aria-label="WhatsApp">
+        </div>
+        <input type="text" id="f-a4-mail" placeholder="Email" aria-label="Email" style="margin-top:10px">
+      </div>
+
+      <div class="field" data-label="05 · SOCIAL PROFILES">
+        <label class="q" for="f-a5">5. Social profiles that should be linked from the site</label>
+        <p class="hint">Instagram, Facebook, LinkedIn, YouTube, TikTok. Paste the addresses.</p>
+        <textarea id="f-a5" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-label="06 · PRIVACY POLICY">
+        <label class="q">6. Do you already have a privacy policy and terms of use?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="privacidade" value="Yes, I have them" data-flag="yes"> Yes, I have them</label>
+          <label class="choice"><input type="radio" name="privacidade" value="No" data-flag="no"> No</label>
+          <label class="choice"><input type="radio" name="privacidade" value="Not sure" data-flag="no"> Not sure</label>
+        </div>
+        <div class="conditional" data-show="privacidade" data-show-values="yes">
+          <input type="text" id="f-a6-link" placeholder="Paste the link">
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-block="B · Proof">
+      <div class="block-head"><span class="block-num">B</span><h2>Proof</h2></div>
+      <p class="block-help">This is the part that makes a stranger believe you. Nothing here is invented: only what you can back up goes on the site.</p>
+
+      <div class="field" data-label="07 · TESTIMONIALS" data-required>
+        <label class="q" for="f-b7">7. Paste 2 to 3 customer testimonials, with the name of the person who said it<span class="req">*</span></label>
+        <p class="hint">A screenshot, a Google review or an Instagram comment all work — if it is a screenshot, email it to us and write “screenshots sent” here. It has to be real: we do not make testimonials up.</p>
+        <textarea id="f-b7" class="big" rows="6"></textarea>
+      </div>
+
+      <div class="field" data-label="08 · REAL NUMBERS">
+        <label class="q" for="f-b8">8. Real numbers you can back up</label>
+        <p class="hint">Years in business, customers served, projects delivered, Google rating, number of procedures. Only what is true: an invented number destroys the trust the rest of the page builds.</p>
+        <textarea id="f-b8" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-label="09 · CERTIFICATIONS">
+        <label class="q" for="f-b9">9. Certifications, professional registrations and licences</label>
+        <p class="hint">Professional council numbers, trade licences, association badges, manufacturer certificates.</p>
+        <textarea id="f-b9" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-label="10 · CLIENT LOGOS">
+        <label class="q" for="f-b10">10. Client or partner logos we are allowed to display</label>
+        <p class="hint">Write the names here and send the files along with the rest of the material (block F).</p>
+        <textarea id="f-b10" rows="2"></textarea>
+      </div>
+
+      <div class="field" data-label="11 · PERMISSION TO USE">
+        <label class="q">11. Do you have permission to use those clients' names and photos on the site?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="autorizacao" value="Yes, all of them" data-flag="no"> Yes, all of them</label>
+          <label class="choice"><input type="radio" name="autorizacao" value="Some of them" data-flag="some"> Some of them</label>
+          <label class="choice"><input type="radio" name="autorizacao" value="No" data-flag="no"> No</label>
+          <label class="choice"><input type="radio" name="autorizacao" value="Not applicable" data-flag="no"> Not applicable</label>
+        </div>
+        <div class="conditional" data-show="autorizacao" data-show-values="some">
+          <input type="text" id="f-b11-quais" placeholder="Which ones?">
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-block="C · Objections and questions">
+      <div class="block-head"><span class="block-num">C</span><h2>Objections and questions</h2></div>
+
+      <div class="field" data-label="12 · WHAT HOLDS THEM BACK" data-required>
+        <label class="q" for="f-c12">12. What do people ask or worry about before hiring you?<span class="req">*</span></label>
+        <p class="hint">The real hesitation of someone who almost buys: “is it expensive?”, “will it take long?”, “what if it goes wrong?”, “do you cover my area?”. This is what the page's arguments are built from.</p>
+        <textarea id="f-c12" class="big" rows="5"></textarea>
+      </div>
+
+      <div class="field" data-label="13 · TOP 5 QUESTIONS" data-required>
+        <label class="q" for="f-c13">13. What are the 5 questions you get most?<span class="req">*</span></label>
+        <p class="hint">Write the question the way customers send it, and the answer you give. It becomes the FAQ section of the site.</p>
+        <textarea id="f-c13" class="big" rows="6"></textarea>
+      </div>
+
+      <div class="field" data-label="14 · COSTLIEST OBJECTION">
+        <label class="q" for="f-c14">14. Which objection loses you the most sales, and how do you answer it?</label>
+        <textarea id="f-c14" rows="3"></textarea>
+      </div>
+    </section>
+
+    <section class="block" data-block="D · Process and guarantees">
+      <div class="block-head"><span class="block-num">D</span><h2>Process and guarantees</h2></div>
+
+      <div class="field" data-label="15 · HOW IT WORKS" data-required>
+        <label class="q" for="f-d15">15. How does it work, from first contact to delivery?<span class="req">*</span></label>
+        <p class="hint">Step by step, with a timeframe for each stage. This removes the fear of someone who has never hired a service like yours.</p>
+        <textarea id="f-d15" class="big" rows="5"></textarea>
+      </div>
+
+      <div class="field" data-label="16 · REPLY TIME" data-required>
+        <label class="q">16. How fast do you usually reply to an enquiry?<span class="req">*</span></label>
+        <p class="hint">This becomes the line under the button (“reply within 1 hour”). Put the timeframe you actually meet, not the ideal one.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="resposta" value="Within 1 hour"> Within 1 hour</label>
+          <label class="choice"><input type="radio" name="resposta" value="Same day"> Same day</label>
+          <label class="choice"><input type="radio" name="resposta" value="Within 24 hours"> Within 24 hours</label>
+          <label class="choice"><input type="radio" name="resposta" value="Within 2 business days"> Within 2 business days</label>
+          <label class="choice"><input type="radio" name="resposta" value="It varies"> It varies</label>
+        </div>
+      </div>
+
+      <div class="field" data-label="17 · GUARANTEE">
+        <label class="q" for="f-d17">17. Do you offer a guarantee, exchange, rescheduling or cancellation? What are the rules?</label>
+        <p class="hint">Only a guarantee you actually honour goes on the site.</p>
+        <textarea id="f-d17" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-label="18 · PAYMENT METHODS">
+        <label class="q" for="f-d18">18. Accepted payment methods</label>
+        <p class="hint">Card, instalments, bank transfer, cash.</p>
+        <textarea id="f-d18" rows="2"></textarea>
+      </div>
+    </section>
+
+    <section class="block" data-block="E · Tone and positioning">
+      <div class="block-head"><span class="block-num">E</span><h2>Tone and positioning</h2></div>
+
+      <div class="field" data-label="19 · BRAND ADJECTIVES">
+        <label class="q" for="f-e19">19. Pick 3 to 5 adjectives that describe your brand</label>
+        <p class="hint">Trustworthy, affordable, bold, technical, welcoming, understated, premium.</p>
+        <input type="text" id="f-e19">
+      </div>
+
+      <div class="field" data-label="20 · HOW YOUR AUDIENCE SPEAKS">
+        <label class="q">20. How does your audience speak? What language do they expect from you?</label>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="tom" value="Formal"> Formal</label>
+          <label class="choice"><input type="checkbox" name="tom" value="Friendly and relaxed"> Friendly and relaxed</label>
+          <label class="choice"><input type="checkbox" name="tom" value="Technical"> Technical</label>
+          <label class="choice"><input type="checkbox" name="tom" value="Premium and refined"> Premium and refined</label>
+          <label class="choice"><input type="checkbox" name="tom" value="Direct and to the point"> Direct and to the point</label>
+        </div>
+      </div>
+
+      <div class="field" data-label="21 · WHO IS NOT YOUR CUSTOMER">
+        <label class="q" for="f-e21">21. Who is NOT your customer?</label>
+        <p class="hint">Who you would rather not serve, or who tends to come to you and never works out. Knowing this helps as much as knowing who the good customer is — the page can filter.</p>
+        <textarea id="f-e21" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-label="22 · WANT TO SELL MORE OF">
+        <label class="q" for="f-e22">22. What would you like to sell more of, that you sell little of today?</label>
+        <p class="hint">Sometimes the site needs to push the most profitable service, not the best known one.</p>
+        <textarea id="f-e22" rows="3"></textarea>
+      </div>
+    </section>
+
+    <section class="block" data-block="F · Material and brand">
+      <div class="block-head"><span class="block-num">F</span><h2>Material and brand</h2></div>
+      <p class="note"><strong>Large files do not fit in this form.</strong> Full-size photos, videos and whole folders: paste the link (Google Drive, WeTransfer, Dropbox) in the fields below, or email them to <strong>pvrsantos.contato@gmail.com</strong>. Down here you can attach only small files — logo, brand guidelines, certificates — up to 3.5 MB in total.</p>
+
+      <div class="field" data-label="23 · EXISTING COPY">
+        <label class="q" for="f-f23">23. Any copy you already have written</label>
+        <p class="hint">Paste it here, or send the document link.</p>
+        <textarea id="f-f23" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-label="24 · PHOTOS">
+        <label class="q" for="f-f24">24. Professional photos</label>
+        <p class="hint">Of the premises, the team and the products or services. Send them at original size, without resizing — a photo pulled from Instagram looks small and blurry when shown large on a site. Paste the folder link.</p>
+        <textarea id="f-f24" rows="2"></textarea>
+      </div>
+
+      <div class="field" data-label="25 · VIDEOS">
+        <label class="q" for="f-f25">25. Videos</label>
+        <p class="hint">A YouTube, Drive or Instagram link.</p>
+        <textarea id="f-f25" rows="2"></textarea>
+      </div>
+
+      <div class="field file-field" data-label="26 · LOGO" data-required>
+        <label class="q" for="f-f26">26. Logo in its original file format<span class="req">*</span></label>
+        <p class="hint">SVG, AI, EPS or PDF. If all you have is PNG or JPG, send the largest one you have. Attach it here, or paste the link in the field below.</p>
+        <input type="file" id="f-f26" multiple>
+        <input type="text" id="f-f26-link" placeholder="Or paste the file link" style="margin-top:10px">
+        <p class="file-note" id="fileNote"></p>
+      </div>
+
+      <div class="field" data-label="27 · BRAND GUIDELINES">
+        <label class="q" for="f-f27">27. Brand guidelines, if they exist</label>
+        <p class="hint">Attach them with the logo above, or paste the link here.</p>
+        <input type="text" id="f-f27">
+      </div>
+
+      <div class="field" data-label="28 · COLORS AND FONTS">
+        <label class="q" for="f-f28">28. Colors and fonts that cannot change</label>
+        <p class="hint">Even without brand guidelines. If you have the color code (like #0A5C3B), even better.</p>
+        <textarea id="f-f28" rows="2"></textarea>
+      </div>
+
+      <div class="field" data-label="29 · MUST NOT APPEAR">
+        <label class="q" for="f-f29">29. Is there anything that must not appear on the site?</label>
+        <p class="hint">A photo, a name, an old price, a service you no longer offer.</p>
+        <textarea id="f-f29" rows="2"></textarea>
+      </div>
+    </section>
+
+    <section class="block" data-block="G · Scope">
+      <div class="block-head"><span class="block-num">G</span><h2>Scope</h2></div>
+      <p class="block-help">Anything tagged “quoted separately” is not included in the package you bought — tick it anyway if you want it, and we will quote it on its own.</p>
+
+      <div class="field" data-label="30 · PAGES">
+        <label class="q">30. Which pages does the site need?</label>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="paginas" value="Home"> Home</label>
+          <label class="choice"><input type="checkbox" name="paginas" value="About"> About</label>
+          <label class="choice"><input type="checkbox" name="paginas" value="Services"> Services</label>
+          <label class="choice"><input type="checkbox" name="paginas" value="Products"> Products</label>
+          <label class="choice"><input type="checkbox" name="paginas" value="Portfolio"> Portfolio</label>
+          <label class="choice"><input type="checkbox" name="paginas" value="FAQ"> FAQ</label>
+          <label class="choice"><input type="checkbox" name="paginas" value="Contact"> Contact</label>
+          <label class="choice"><input type="checkbox" name="paginas" value="Blog"> Blog <span class="extra">quoted separately</span></label>
+          <label class="choice"><input type="checkbox" name="paginas" value="Online store"> Online store <span class="extra">quoted separately</span></label>
+          <label class="choice other-choice"><input type="checkbox" name="paginas" value="Other"> Other: <input type="text" id="f-g30-outra" placeholder="describe"></label>
+        </div>
+      </div>
+
+      <div class="field" data-label="31 · FEATURES">
+        <label class="q">31. Which features does the site need?</label>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="func" value="Contact form"> Contact form</label>
+          <label class="choice"><input type="checkbox" name="func" value="WhatsApp"> WhatsApp</label>
+          <label class="choice"><input type="checkbox" name="func" value="Online booking"> Online booking <span class="extra">quoted separately</span></label>
+          <label class="choice"><input type="checkbox" name="func" value="Store and checkout"> Store and checkout <span class="extra">quoted separately</span></label>
+          <label class="choice"><input type="checkbox" name="func" value="Client login"> Client login <span class="extra">quoted separately</span></label>
+          <label class="choice"><input type="checkbox" name="func" value="Newsletter"> Newsletter <span class="extra">quoted separately</span></label>
+          <label class="choice"><input type="checkbox" name="func" value="Multiple languages"> Multiple languages <span class="extra">quoted separately</span></label>
+          <label class="choice"><input type="checkbox" name="func" value="CRM or ERP integration"> CRM or ERP integration <span class="extra">quoted separately</span></label>
+          <label class="choice other-choice"><input type="checkbox" name="func" value="Other"> Other: <input type="text" id="f-g31-outra" placeholder="describe"></label>
+        </div>
+      </div>
+
+      <div class="conditional" data-show="paginas" data-show-values="Blog">
+        <div class="field" data-label="32 · WHO FEEDS THE BLOG">
+          <label class="q" for="f-g32">32. Who writes the blog posts, and how often?</label>
+          <p class="hint">A dormant blog whose last post is a year old undermines the credibility the rest of the site builds. If nobody can feed it, we recommend leaving it for a second phase.</p>
+          <textarea id="f-g32" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="field" data-label="33 · KEEP AS IS">
+        <label class="q" for="f-g33">33. Is there any copy or section you want kept exactly as it is?</label>
+        <textarea id="f-g33" rows="2"></textarea>
+      </div>
+    </section>
+
+    <section class="block" data-block="H · Technical and measurement">
+      <div class="block-head"><span class="block-num">H</span><h2>Technical and measurement</h2></div>
+
+      <div class="field" data-label="34 · DOMAIN" data-required>
+        <label class="q">34. Domain: do you already have one?<span class="req">*</span></label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="dominio" value="Yes, I have one" data-flag="yes"> Yes, I have one</label>
+          <label class="choice"><input type="radio" name="dominio" value="No, I need help" data-flag="no"> No, I need help</label>
+        </div>
+        <div class="conditional" data-show="dominio" data-show-values="yes">
+          <input type="text" id="f-h34-qual" placeholder="What is the address and where is it registered (GoDaddy, Namecheap, not sure)">
+        </div>
+      </div>
+
+      <div class="field" data-label="35 · HOSTING">
+        <label class="q" for="f-h35">35. Where is the site hosted today?</label>
+        <input type="text" id="f-h35">
+      </div>
+
+      <div class="field" data-label="36 · TOOLS">
+        <label class="q">36. Which tools and channels do you use today?</label>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="ferramentas" value="Instagram"> Instagram</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="WhatsApp Business"> WhatsApp Business</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="Google Business Profile"> Google Business Profile</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="Google Ads"> Google Ads</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="Meta Ads"> Meta Ads</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="Spreadsheets"> Spreadsheets</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="In-house system or ERP"> In-house system or ERP</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="CRM"> CRM</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="Online calendar"> Online calendar</label>
+          <label class="choice"><input type="checkbox" name="ferramentas" value="None"> None</label>
+        </div>
+      </div>
+
+      <div class="field" data-label="37 · INTEGRATIONS">
+        <label class="q" for="f-h37">37. Do any of those need to connect to the site?</label>
+        <textarea id="f-h37" rows="2"></textarea>
+      </div>
+
+      <div class="field" data-label="38 · HOW PEOPLE FIND YOU" data-required>
+        <label class="q">38. How do people find you today?<span class="req">*</span></label>
+        <p class="hint">This defines what the visitor already knows when they open the site, and therefore where the page has to start.</p>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="origem" value="Customer referral"> Customer referral</label>
+          <label class="choice"><input type="checkbox" name="origem" value="Instagram"> Instagram</label>
+          <label class="choice"><input type="checkbox" name="origem" value="Google search"> Google search</label>
+          <label class="choice"><input type="checkbox" name="origem" value="Paid ads"> Paid ads</label>
+          <label class="choice"><input type="checkbox" name="origem" value="Signage or storefront"> Signage or storefront</label>
+          <label class="choice"><input type="checkbox" name="origem" value="WhatsApp group"> WhatsApp group</label>
+          <label class="choice"><input type="checkbox" name="origem" value="Partnership"> Partnership</label>
+          <label class="choice"><input type="checkbox" name="origem" value="Not sure"> Not sure</label>
+        </div>
+      </div>
+
+      <div class="field" data-label="39 · WHAT COUNTS AS A NEW CUSTOMER" data-required>
+        <label class="q" for="f-h39">39. What counts as a new customer for you?<span class="req">*</span></label>
+        <p class="hint">We configure Analytics to measure exactly that. For example: “when someone messages me”, “when they book a consultation”, “when they buy”.</p>
+        <textarea id="f-h39" rows="2"></textarea>
+      </div>
+
+      <div class="field" data-label="40 · PAGES THAT BRING VISITS">
+        <label class="q" for="f-h40">40. If you have a site today: which of its pages bring in visits?</label>
+        <p class="hint">If they already rank on Google, we redirect them to the new pages. Without that you lose what you had already earned.</p>
+        <textarea id="f-h40" rows="2"></textarea>
+      </div>
+    </section>
+
+    <section class="block" data-block="I · Project">
+      <div class="block-head"><span class="block-num">I</span><h2>Project</h2></div>
+
+      <div class="field" data-label="41 · WHO APPROVES" data-required>
+        <label class="q" for="f-i41">41. Who approves the final content and design?<span class="req">*</span></label>
+        <p class="hint">Name and role. If it is more than one person, say who has the final word.</p>
+        <input type="text" id="f-i41">
+      </div>
+
+      <div class="field" data-label="42 · FIXED DATE">
+        <label class="q" for="f-i42">42. Is there a fixed date to hit?</label>
+        <p class="hint">A campaign, a trade show, an opening, a season. If there is, say which and when.</p>
+        <input type="text" id="f-i42">
+      </div>
+
+      <div class="field" data-label="43 · SITE YOU DO NOT WANT TO LOOK LIKE">
+        <label class="q" for="f-i43">43. Is there a website you do NOT want to look like?</label>
+        <p class="hint">It can be a competitor's. Give the address and what bothers you about it — it is as useful as knowing what you like.</p>
+        <textarea id="f-i43" rows="2"></textarea>
+      </div>
+
+      <div class="field" data-label="44 · ANYTHING ELSE">
+        <label class="q" for="f-i44">44. Anything else important we did not ask about?</label>
+        <textarea id="f-i44" rows="3"></textarea>
+      </div>
+    </section>
+
+    <footer class="submit-zone">
+      <div class="state-error" id="validationError" hidden><p></p></div>
+      <button type="submit" class="btn btn-primary" id="submitBtn">Send the production brief</button>
+      <p class="submit-note">What you type stays saved in this browser until you send it — you can close the page and come back later.</p>
+    </footer>
+  </form>
+
+  <div class="confirm" id="confirmBox">
+    <div class="state show" id="sendingState">
+      <h2>Sending…</h2>
+      <p>One moment.</p>
+    </div>
+
+    <div class="state" id="successState">
+      <div class="state-success">
+        <h2>Got it ✔</h2>
+        <p>Everything arrived. From here production runs without interrupting you — we will only come back for the review.</p>
+      </div>
+    </div>
+
+    <div class="state" id="fallbackState">
+      <h2>Your answers are ready</h2>
+      <p>The automatic send failed, but nothing was lost — copy the text below, download the file, or email it to <strong>pvrsantos.contato@gmail.com</strong>.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="copyBtn">Copy my answers</button>
+        <button type="button" class="btn btn-secondary" id="downloadBtn">Download the .md file</button>
+        <button type="button" class="btn btn-secondary" id="mailBtn">Open a pre-filled email</button>
+        <span class="copy-status mono" id="copyStatus">Copied ✓</span>
+      </div>
+      <textarea readonly id="summaryText"></textarea>
+    </div>
+  </div>
+</main>
+
+<script src="../../assets/briefing.js"></script>
+</body>
+</html>
