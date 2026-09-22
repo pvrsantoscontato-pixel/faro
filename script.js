@@ -162,10 +162,9 @@ const PRECOS = {
   ],
   extras: [
     { id: 'gmn', nome: 'Google Meu Negócio', nome_en: 'Google Business Profile', desc: 'Apareça no Google e no Maps.', desc_en: 'Show up on Google and Maps.', preco: 400, preco_en: 180, tag: 'Recomendado', tag_en: 'Recommended' },
-    { id: 'dominio', nome: 'Configuração de domínio + hospedagem', nome_en: 'Domain + hosting setup', desc: 'Custo do domínio/hospedagem pago à parte ao provedor.', desc_en: 'Domain/hosting fees paid separately to the provider.', preco: 200, preco_en: 90 },
     { id: 'blog', nome: 'Blog', nome_en: 'Blog', desc: 'Artigos para aparecer em mais buscas.', desc_en: 'Articles to rank for more searches.', preco: 300, preco_en: 130 },
     { id: 'paginas', nome: 'Página adicional', nome_en: 'Extra page', desc: 'R$ 150 por página extra.', desc_en: 'US$ 70 per extra page.', preco: 150, preco_en: 70, quantidade: true, max: 10 },
-    { id: 'manutencao', nome: 'Manutenção mensal', nome_en: 'Monthly maintenance', desc: 'Até 2 alterações por mês, correções e suporte.', desc_en: 'Up to 2 changes a month, fixes and support.', preco: 80, preco_en: 40, mensal: true },
+    { id: 'manutencao', nome: 'Manutenção mensal', nome_en: 'Monthly maintenance', desc: 'Até 4 alterações por mês, correções e suporte.', desc_en: 'Up to 4 changes a month, fixes and support.', preco: 60, preco_en: 40, mensal: true },
   ],
   pagamentos: [
     { id: 'pix', nome: 'Pix', nome_en: 'Pix', desc: '10% de desconto', desc_en: '10% off', desconto: 0.10, padrao: true },
